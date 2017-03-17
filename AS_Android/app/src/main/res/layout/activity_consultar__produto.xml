@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_consultar__produto"
     android:layout_width="match_parent"
@@ -10,4 +11,51 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.nicha.as_android.Consultar_ProdutoActivity">
 
+    <Button
+        android:text="Consultar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnProdutoConsultar"
+        android:layout_alignBaseline="@+id/btnQrProdutoConsultar"
+        android:layout_alignBottom="@+id/btnQrProdutoConsultar"
+        android:layout_alignEnd="@+id/txtProdutoConsultar" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/txtProdutoConsultar"
+        android:layout_marginEnd="42dp"
+        android:layout_alignBaseline="@+id/textView6"
+        android:layout_alignBottom="@+id/textView6"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Produto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:id="@+id/textView6"
+        android:layout_marginStart="33dp"
+        android:layout_above="@+id/btnQrProdutoConsultar"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="QR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="196dp"
+        android:id="@+id/btnQrProdutoConsultar"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/txtProdutoConsultar" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/logoasg"
+        android:layout_marginTop="55dp"
+        android:id="@+id/imageView6"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_consultar__pre_aluguel"
     android:layout_width="match_parent"
@@ -10,4 +11,43 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.nicha.as_android.Consultar_PreAluguelActivity">
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:layout_marginTop="85dp"
+        android:id="@+id/txtPreAluguel"
+        android:layout_below="@+id/imageView5"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="23dp" />
+
+    <TextView
+        android:text="Pré aluguel:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        android:layout_alignBaseline="@+id/txtPreAluguel"
+        android:layout_alignBottom="@+id/txtPreAluguel"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="18dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/logoasg"
+        android:id="@+id/imageView5"
+        android:layout_marginTop="63dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/textView5" />
+
+    <Button
+        android:text="Consultar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:id="@+id/btnConsultarPreAluguel"
+        android:layout_below="@+id/txtPreAluguel"
+        android:layout_alignEnd="@+id/txtPreAluguel"
+        android:layout_alignStart="@+id/txtPreAluguel" />
 </RelativeLayout>
