@@ -10,8 +10,58 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.nicha.as_android.LoginActivity">
 
-    <TextView
+    <Button
+        android:text="Entrar"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="34dp"
+        android:id="@+id/btnEntrar"
+        android:layout_alignEnd="@+id/txtSenha"
+        android:layout_width="wrap_content"
+        android:layout_alignStart="@+id/txtSenha" />
+
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/txtSenha"
+        android:layout_above="@+id/btnEntrar"
+        android:layout_alignStart="@+id/txtUsuario"
+        android:layout_marginBottom="35dp" />
+
+    <ImageView
+        android:src="@drawable/LogoAlugueService"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_above="@+id/textView" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/txtUsuario"
+        android:layout_above="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:text="Usuário"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_marginBottom="12dp"
+        android:layout_above="@+id/txtUsuario"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Senha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:layout_marginBottom="16dp"
+        android:layout_above="@+id/txtSenha"
+        android:layout_alignEnd="@+id/textView" />
 </RelativeLayout>

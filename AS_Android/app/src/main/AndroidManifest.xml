@@ -15,6 +15,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".PaginaPrincipalActivity" />
+        <activity android:name=".PaginaPrincipal_PreAluguelActivity" />
+        <activity android:name=".Consultar_PreAluguelActivity" />
+        <activity android:name=".Consultar_ProdutoActivity" />
+        <activity android:name=".Alterar_Status_ProdutoActivity" />
+        <activity android:name=".Criar_PreAluguelActivity" />
+        <activity android:name=".PaginaPrincipial_ProdutosActivity"></activity>
     </application>
 
 </manifest>
