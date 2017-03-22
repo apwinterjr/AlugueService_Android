@@ -21,7 +21,9 @@
         <activity android:name=".Consultar_ProdutoActivity" />
         <activity android:name=".Alterar_Status_ProdutoActivity" />
         <activity android:name=".Criar_PreAluguelActivity" />
-        <activity android:name=".PaginaPrincipial_ProdutosActivity"></activity>
+        <activity android:name=".PaginaPrincipial_ProdutosActivity" />
+        <activity android:name=".Consultar_Produto_ResultadoActivity" />
+        <activity android:name=".Consultar_PreAluguel_ResultadoActivity"></activity>
     </application>
 
 </manifest>
