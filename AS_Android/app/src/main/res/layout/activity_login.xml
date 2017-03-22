@@ -11,14 +11,15 @@
     tools:context="com.example.nicha.as_android.LoginActivity">
 
     <Button
-        android:text="Entrar"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="34dp"
         android:id="@+id/btnEntrar"
-        android:layout_alignEnd="@+id/txtSenha"
         android:layout_width="wrap_content"
-        android:layout_alignStart="@+id/txtSenha" />
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/txtSenha"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/txtSenha"
+        android:layout_marginBottom="34dp"
+        android:onClick="autenticar"
+        android:text="Entrar" />
 
     <EditText
         android:layout_width="wrap_content"
