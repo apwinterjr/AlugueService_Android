@@ -11,66 +11,75 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ID:"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="116dp" />
 
     <TextView
         android:id="@+id/txtIdConsultarResultado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:layout_editor_absoluteX="57dp"
+        tools:layout_editor_absoluteY="116dp" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nome:"
-        tools:layout_editor_absoluteX="172dp"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:layout_editor_absoluteX="192dp"
+        tools:layout_editor_absoluteY="116dp" />
 
     <TextView
         android:id="@+id/txtNomeConsultarProduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="213dp"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:layout_editor_absoluteX="243dp"
+        tools:layout_editor_absoluteY="116dp" />
 
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Descrição:"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="98dp" />
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="251dp" />
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tamanho:"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="63dp" />
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="189dp" />
 
     <TextView
         android:id="@+id/txtTamanhoConsultarProduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="82dp"
-        tools:layout_editor_absoluteY="63dp" />
+        tools:layout_editor_absoluteX="98dp"
+        tools:layout_editor_absoluteY="189dp" />
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Preço:"
-        tools:layout_editor_absoluteX="174dp"
-        tools:layout_editor_absoluteY="63dp" />
+        tools:layout_editor_absoluteX="192dp"
+        tools:layout_editor_absoluteY="189dp" />
 
     <TextView
         android:id="@+id/txtPrecoConsultarProduto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="213dp"
-        tools:layout_editor_absoluteY="63dp" />
+        tools:layout_editor_absoluteX="242dp"
+        tools:layout_editor_absoluteY="189dp" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/logoasg"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="16dp" />
+
 </android.support.constraint.ConstraintLayout>

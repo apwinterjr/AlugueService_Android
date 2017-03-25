@@ -3,6 +3,7 @@ package com.example.nicha.as_android;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 
 public class LoginActivity extends Activity {
@@ -13,13 +14,17 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.activity_login);
     }
 
-    public void autenticar(){
-        EditText login = (EditText) findViewById(R.id.txtUsuario);
-        EditText senha = (EditText) findViewById(R.id.txtSenha);
+    public void autenticar(View v){
+        EditText l = (EditText) findViewById(R.id.txtUsuario);
+        EditText s = (EditText) findViewById(R.id.txtSenha);
+        String pass = "admin";
+        String login = l.getText().toString();
+        String senha = s.getText().toString();
 
-        if (login.getText().equals("1") && senha.getText().equals("admin"))
+        if (senha.equals(pass) && login.equals(pass))
         {
             Intent intent =  new Intent(getApplicationContext(), PaginaPrincipalActivity.class);
+            startActivity(intent);
         }
     }
 }

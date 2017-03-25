@@ -15,8 +15,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cliente:"
-        android:layout_alignBaseline="@+id/button2"
-        android:layout_alignBottom="@+id/button2"
+        android:layout_alignBaseline="@+id/btnSelecionarCliente"
+        android:layout_alignBottom="@+id/btnSelecionarCliente"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -27,7 +27,7 @@
         android:layout_toEndOf="@+id/textView7" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnSelecionarCliente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -39,16 +39,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/button2"
+        android:layout_below="@+id/btnSelecionarCliente"
         android:layout_marginTop="19dp"
         android:text="Operador:" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnSelecionarOperador"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/button2"
-        android:layout_below="@+id/button2"
+        android:layout_alignStart="@+id/btnSelecionarCliente"
+        android:layout_below="@+id/btnSelecionarCliente"
         android:text="Selecionar" />
 
     <TextView
@@ -56,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/button3"
+        android:layout_below="@+id/btnSelecionarOperador"
         android:layout_marginTop="17dp"
         android:text="Data:" />
 
@@ -66,5 +66,33 @@
         android:layout_marginTop="171dp"
         android:layout_below="@+id/textView14"
         android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="date"
+        android:layout_alignBaseline="@+id/textView14"
+        android:layout_alignBottom="@+id/textView14"
+        android:layout_toEndOf="@+id/textView11" />
+
+    <Button
+        android:id="@+id/btnAdicionarProdutoPreVenda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="99dp"
+        android:text="+"
+        android:layout_below="@+id/editText"
+        android:layout_toEndOf="@+id/textView7" />
+
+    <Button
+        android:id="@+id/btnRemoverProdutoPreVenda"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:layout_alignBaseline="@+id/btnAdicionarProdutoPreVenda"
+        android:layout_alignBottom="@+id/btnAdicionarProdutoPreVenda"
+        android:layout_alignStart="@+id/btnSelecionarOperador" />
 
 </RelativeLayout>

@@ -27,6 +27,7 @@
         android:layout_below="@+id/imageView2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="58dp"
+        android:onClick="entrarPreAluguel"
         android:id="@+id/btnPreAluguel" />
 
     <Button
@@ -36,6 +37,7 @@
         android:id="@+id/btnProduto"
         android:layout_below="@+id/btnPreAluguel"
         android:layout_alignStart="@+id/btnPreAluguel"
+        android:onClick="entrarProduto"
         android:layout_marginTop="25dp" />
 
     <Button
