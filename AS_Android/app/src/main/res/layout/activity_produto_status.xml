@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".produto.StatusActivity">
+    tools:context="com.example.nicha.as_android.produto.StatusActivity">
 
 </android.support.constraint.ConstraintLayout>

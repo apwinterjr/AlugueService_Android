@@ -1,11 +1,11 @@
 package com.example.nicha.as_android.produto;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 
 import com.example.nicha.as_android.R;
 
-public class StatusActivity extends AppCompatActivity {
+public class StatusActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
