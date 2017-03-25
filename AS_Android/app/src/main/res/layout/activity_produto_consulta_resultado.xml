@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.nicha.as_android.Consultar_Produto_ResultadoActivity">
+    tools:context=".produto.ResultadoActivity">
+
 
     <TextView
         android:id="@+id/textView8"
@@ -81,5 +82,4 @@
         app:srcCompat="@drawable/logoasg"
         tools:layout_editor_absoluteX="85dp"
         tools:layout_editor_absoluteY="16dp" />
-
 </android.support.constraint.ConstraintLayout>

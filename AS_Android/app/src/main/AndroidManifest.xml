@@ -16,14 +16,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".PaginaPrincipalActivity" />
-        <activity android:name=".PaginaPrincipal_PreAluguelActivity" />
-        <activity android:name=".Consultar_PreAluguelActivity" />
-        <activity android:name=".Consultar_ProdutoActivity" />
-        <activity android:name=".Alterar_Status_ProdutoActivity" />
-        <activity android:name=".Criar_PreAluguelActivity" />
-        <activity android:name=".PaginaPrincipial_ProdutosActivity" />
-        <activity android:name=".Consultar_Produto_ResultadoActivity" />
-        <activity android:name=".Consultar_PreAluguel_ResultadoActivity"></activity>
+        <activity android:name=".pre_aluguel.MenuActivity" />
+        <activity android:name=".pre_aluguel.ConsultarActivity" />
+        <activity android:name=".pre_aluguel.CriarActivity" />
+        <activity android:name=".pre_aluguel.ResultadoActivity" />
+        <activity android:name=".produto.ResultadoActivity" />
+        <activity android:name=".produto.ConsultarActivity" />
+        <activity android:name=".produto.MenuActivity" />
+        <activity android:name=".produto.StatusActivity"></activity>
     </application>
 
 </manifest>

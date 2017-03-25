@@ -14,12 +14,12 @@ public class PaginaPrincipalActivity extends Activity {
     }
 
     public void entrarPreAluguel (View v){
-        Intent intent = new Intent(getApplicationContext(), PaginaPrincipal_PreAluguelActivity.class);
+        Intent intent =  new Intent(v.getContext(), com.example.nicha.as_android.pre_aluguel.MenuActivity.class);
         startActivity(intent);
     }
 
     public void entrarProduto (View v){
-        Intent intent = new Intent(getApplicationContext(), PaginaPrincipial_ProdutosActivity.class);
+        Intent intent = new Intent(getApplicationContext(), com.example.nicha.as_android.produto.MenuActivity.class);
         startActivity(intent);
     }
 }
