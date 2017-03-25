@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,42 +8,15 @@
 
 
     <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ID:"
-        tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="116dp" />
-
-    <TextView
-        android:id="@+id/txtIdConsultarResultado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="57dp"
-        tools:layout_editor_absoluteY="116dp" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nome:"
-        tools:layout_editor_absoluteX="192dp"
-        tools:layout_editor_absoluteY="116dp" />
-
-    <TextView
-        android:id="@+id/txtNomeConsultarProduto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="243dp"
-        tools:layout_editor_absoluteY="116dp" />
-
-    <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Descrição:"
         tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="251dp" />
+        tools:layout_editor_absoluteY="251dp"
+        android:layout_marginTop="17dp"
+        android:layout_below="@+id/textView13"
+        android:layout_alignStart="@+id/textView13" />
 
     <TextView
         android:id="@+id/textView13"
@@ -51,14 +24,10 @@
         android:layout_height="wrap_content"
         android:text="Tamanho:"
         tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="189dp" />
-
-    <TextView
-        android:id="@+id/txtTamanhoConsultarProduto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="98dp"
-        tools:layout_editor_absoluteY="189dp" />
+        tools:layout_editor_absoluteY="189dp"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/textView15"
+        android:layout_alignStart="@+id/textView15" />
 
     <TextView
         android:id="@+id/textView15"
@@ -66,20 +35,85 @@
         android:layout_height="wrap_content"
         android:text="Preço:"
         tools:layout_editor_absoluteX="192dp"
-        tools:layout_editor_absoluteY="189dp" />
+        tools:layout_editor_absoluteY="189dp"
+        android:layout_marginTop="17dp"
+        android:layout_below="@+id/textView9"
+        android:layout_alignStart="@+id/textView9" />
 
     <TextView
-        android:id="@+id/txtPrecoConsultarProduto"
+        android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="242dp"
-        tools:layout_editor_absoluteY="189dp" />
+        android:layout_weight="1"
+        android:text="ID:"
+        tools:layout_editor_absoluteX="138dp"
+        tools:layout_editor_absoluteY="268dp"
+        android:layout_marginTop="34dp"
+        android:layout_below="@+id/imageView7"
+        android:layout_toStartOf="@+id/imageView7" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Nome:"
+        tools:layout_editor_absoluteX="192dp"
+        tools:layout_editor_absoluteY="116dp"
+        android:layout_marginTop="19dp"
+        android:layout_below="@+id/textView8"
+        android:layout_alignStart="@+id/textView8" />
 
     <ImageView
         android:id="@+id/imageView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
         app:srcCompat="@drawable/logoasg"
         tools:layout_editor_absoluteX="85dp"
         tools:layout_editor_absoluteY="16dp" />
-</android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/txtIdProdutoConsultado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView8"
+        android:layout_marginStart="9dp"
+        android:layout_toEndOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/txtNomeProdutoConsultado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView9"
+        android:layout_marginStart="8dp"
+        android:layout_toEndOf="@+id/textView9" />
+
+    <TextView
+        android:id="@+id/txtPrecoProdutoConsultado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView15"
+        android:layout_toEndOf="@+id/txtNomeProdutoConsultado" />
+
+    <TextView
+        android:id="@+id/txtTamanhoProdutoConsultado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView13"
+        android:layout_marginStart="7dp"
+        android:layout_toEndOf="@+id/textView12"
+        android:text="    " />
+
+    <TextView
+        android:id="@+id/txtDescricaoProdutoConsultado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="     "
+        android:layout_alignBaseline="@+id/textView12"
+        android:layout_alignBottom="@+id/textView12"
+        android:layout_alignStart="@+id/txtTamanhoProdutoConsultado" />
+
+</RelativeLayout>
