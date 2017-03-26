@@ -13,7 +13,8 @@
    <ScrollView
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:layout_alignParentBottom="true">
+       android:layout_alignParentTop="true"
+       android:layout_alignParentStart="true">
        <RelativeLayout
            android:layout_width="match_parent"
            android:layout_height="match_parent">
@@ -34,13 +35,21 @@
                android:layout_alignParentTop="true"
                android:layout_toEndOf="@+id/textView7" />
 
+           <Space
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_alignParentStart="true"
+               android:layout_alignParentTop="true"
+               android:layout_marginTop="153dp"
+               android:id="@+id/space" />
+
            <Button
                android:id="@+id/btnSelecionarCliente"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:layout_alignParentEnd="true"
+               android:text="Selecionar"
                android:layout_alignParentTop="true"
-               android:text="Selecionar" />
+               android:layout_alignEnd="@+id/btnAdicionarProdutoPreVenda" />
 
            <TextView
                android:id="@+id/textView11"
@@ -55,8 +64,17 @@
                android:id="@+id/btnSelecionarOperador"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:layout_alignStart="@+id/btnSelecionarCliente"
+               android:text="Selecionar"
                android:layout_below="@+id/btnSelecionarCliente"
+               android:layout_alignStart="@+id/btnSelecionarCliente" />
+
+           <Button
+               android:id="@+id/btnSelecionarData"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignStart="@+id/btnSelecionarOperador"
+               android:layout_below="@+id/btnSelecionarOperador"
+               android:layout_weight="0.41"
                android:text="Selecionar" />
 
            <TextView
@@ -93,53 +111,51 @@
                </LinearLayout>
            </ScrollView>
 
-           <EditText
-               android:id="@+id/editText"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:ems="10"
-               android:inputType="date"
-               android:layout_alignBaseline="@+id/textView14"
-               android:layout_alignBottom="@+id/textView14"
-               android:layout_toEndOf="@+id/textView11" />
-
            <Button
                android:id="@+id/btnAdicionarProdutoPreVenda"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:layout_marginTop="21dp"
                android:text="+"
-               android:layout_below="@+id/editText"
-               android:layout_toStartOf="@+id/btnRemoverProdutoPreVenda"
-               android:layout_marginEnd="23dp" />
+               android:layout_marginEnd="21dp"
+               android:layout_alignTop="@+id/space"
+               android:layout_alignParentEnd="true" />
 
            <Button
                android:id="@+id/btnRemoverProdutoPreVenda"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:text="-"
-               android:layout_above="@+id/scrollViewProdutos"
-               android:layout_toEndOf="@+id/editText" />
+               android:layout_alignTop="@+id/space"
+               android:layout_toStartOf="@+id/btnAdicionarProdutoPreVenda" />
 
            <TextView
                android:id="@+id/textView10"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:layout_alignTop="@+id/btnAdicionarProdutoPreVenda"
-               android:layout_marginTop="11dp"
-               android:layout_toStartOf="@+id/editText"
-               android:text="Produtos:" />
+               android:text="Produtos:"
+               android:layout_alignBaseline="@+id/btnRemoverProdutoPreVenda"
+               android:layout_alignBottom="@+id/btnRemoverProdutoPreVenda"
+               android:layout_alignEnd="@+id/textView11" />
+
+           <Button
+               android:id="@+id/btnFinalizarPreAluguel"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_alignParentStart="true"
+               android:layout_alignParentTop="true"
+               android:layout_marginTop="464dp"
+               android:layout_weight="0.97"
+               android:text="Finalizar" />
        </RelativeLayout>
    </ScrollView>
 
-    <Button
-        android:id="@+id/btnFinalizarPreAluguel"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/txtDataSelecionadaPreVenda"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="464dp"
-        android:layout_weight="0.97"
-        android:text="Finalizar" />
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="113dp" />
 
 </RelativeLayout>
