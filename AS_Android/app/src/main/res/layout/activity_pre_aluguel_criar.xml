@@ -78,6 +78,16 @@
                android:text="Selecionar" />
 
            <TextView
+               android:id="@+id/txtDataSelecionadaPreVenda"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_alignParentStart="true"
+               android:layout_alignParentTop="true"
+               android:layout_marginStart="41dp"
+               android:layout_marginTop="113dp"
+               android:text="          " />
+
+           <TextView
                android:id="@+id/textView14"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
@@ -148,14 +158,5 @@
                android:text="Finalizar" />
        </RelativeLayout>
    </ScrollView>
-
-    <TextView
-        android:id="@+id/txtDataSelecionadaPreVenda"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="41dp"
-        android:layout_marginTop="113dp" />
 
 </RelativeLayout>

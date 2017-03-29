@@ -10,41 +10,47 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".pre_aluguel.MenuActivity">
 
-    <Button
-        android:text="Consultar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
-        android:id="@+id/btnConsultarPreVenda"
-        android:onClick="entrarConsultarPreAluguel"
-        android:layout_below="@+id/btnCriarPreVenda"
-        android:layout_alignParentStart="true" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:text="Pré venda"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView4"
-        android:layout_below="@+id/imageView4"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp" />
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_alignParentTop="false"
+            android:layout_centerHorizontal="false"
+            app:srcCompat="@drawable/logoasg" />
 
-    <Button
-        android:text="Criar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnCriarPreVenda"
-        android:onClick="entrarCriarPreAluguel"
-        android:layout_below="@+id/textView4"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="23dp" />
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView4"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="Pré venda" />
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/logoasg"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        <Button
+            android:id="@+id/btnCriarPreVenda"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView4"
+            android:layout_marginTop="23dp"
+            android:onClick="entrarCriarPreAluguel"
+            android:text="Criar" />
+
+        <Button
+            android:id="@+id/btnConsultarPreVenda"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/btnCriarPreVenda"
+            android:layout_marginTop="25dp"
+            android:onClick="entrarConsultarPreAluguel"
+            android:text="Consultar" />
+    </LinearLayout>
 
 </RelativeLayout>
