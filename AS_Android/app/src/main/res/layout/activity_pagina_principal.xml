@@ -40,6 +40,7 @@
             android:layout_below="@+id/imageView2"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="23dp"
+            android:gravity="center"
             android:onClick="entrarPreAluguel"
             android:text="Pré-Aluguel" />
 
@@ -50,6 +51,7 @@
             android:layout_alignStart="@+id/btnPreAluguel"
             android:layout_below="@+id/btnPreAluguel"
             android:layout_marginTop="25dp"
+            android:gravity="center"
             android:onClick="entrarProduto"
             android:text="Produto" />
     </LinearLayout>

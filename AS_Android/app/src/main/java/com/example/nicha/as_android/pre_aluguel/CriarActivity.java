@@ -40,8 +40,8 @@ public class CriarActivity extends Activity {
     DatePickerDialog.OnDateSetListener listner = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            TextView txtDataSelecionada = (TextView) findViewById(R.id.txtDataSelecionadaPreVenda);
-            txtDataSelecionada.setText(dayOfMonth + "/" + month + "/" + year);
+            TextView txtDataSelecionada = (TextView) findViewById(R.id.txtDataCriarPreAluguel);
+            txtDataSelecionada.setText("Data: " + dayOfMonth + "/" + month + "/" + year);
         }
     };
 

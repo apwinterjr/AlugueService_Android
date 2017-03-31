@@ -16,7 +16,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView16"
@@ -34,33 +34,36 @@
                     android:id="@+id/textView19"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nome:"
                     android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Nome:"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="8dp" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textView21"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CPF:"
                     android:layout_marginLeft="8dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
+                    android:text="CPF:"
+                    app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
                 <TextView
                     android:id="@+id/textView22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginLeft="8dp"
-                    android:text="Telefone:"
-                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    app:layout_constraintTop_toBottomOf="@+id/textView21"
+                    android:text="Telefone:"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginBottom="8dp" />
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView21" />
             </android.support.constraint.ConstraintLayout>
 
             <TextView
@@ -80,16 +83,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:text="ID:"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="8dp" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textView25"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="Nome:"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -104,10 +109,32 @@
                 android:gravity="center"
                 android:text="Produto" />
 
-            <ListView
-                android:layout_width="366dp"
-                android:layout_height="wrap_content"
-                android:minHeight="65dp" />
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp">
+
+                <ScrollView
+                    android:layout_width="352dp"
+                    android:layout_height="240dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:layout_editor_absoluteX="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:orientation="vertical">
+
+                        <ListView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="65dp"
+                            tools:layout_editor_absoluteX="8dp"
+                            tools:layout_editor_absoluteY="-21dp" />
+                    </LinearLayout>
+                </ScrollView>
+
+            </android.support.constraint.ConstraintLayout>
 
             <Button
                 android:id="@+id/button"

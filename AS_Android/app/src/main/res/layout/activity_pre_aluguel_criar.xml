@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,148 +16,132 @@
        android:layout_height="match_parent"
        android:layout_alignParentTop="true"
        android:layout_alignParentStart="true">
-       <RelativeLayout
+
+       <android.support.constraint.ConstraintLayout
            android:layout_width="match_parent"
            android:layout_height="match_parent">
-
-           <TextView
-               android:id="@+id/textView7"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="Cliente:"
-               android:layout_alignBaseline="@+id/btnSelecionarCliente"
-               android:layout_alignBottom="@+id/btnSelecionarCliente"
-               android:layout_alignParentStart="true" />
 
            <TextView
                android:id="@+id/txtClienteCriarPreAluguel"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:layout_alignParentTop="true"
-               android:layout_toEndOf="@+id/textView7" />
-
-           <Space
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_alignParentStart="true"
-               android:layout_alignParentTop="true"
-               android:layout_marginTop="153dp"
-               android:id="@+id/space" />
+               android:text="Cliente:"
+               android:layout_marginLeft="8dp"
+               app:layout_constraintLeft_toLeftOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               android:layout_marginTop="24dp"
+               android:layout_marginStart="8dp" />
 
            <Button
                android:id="@+id/btnSelecionarCliente"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:text="Selecionar"
-               android:layout_alignParentTop="true"
-               android:layout_alignEnd="@+id/btnAdicionarProdutoPreVenda" />
+               app:layout_constraintTop_toTopOf="parent"
+               android:layout_marginTop="8dp"
+               android:layout_marginRight="8dp"
+               app:layout_constraintRight_toRightOf="parent"
+               android:layout_marginEnd="8dp" />
 
            <TextView
-               android:id="@+id/textView11"
+               android:id="@+id/txtOperadorCriarPreAluguel"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:layout_alignParentStart="true"
-               android:layout_below="@+id/btnSelecionarCliente"
-               android:layout_marginTop="19dp"
-               android:text="Operador:" />
+               android:text="Operador:"
+               android:layout_marginTop="36dp"
+               app:layout_constraintTop_toBottomOf="@+id/txtClienteCriarPreAluguel"
+               android:layout_marginLeft="8dp"
+               app:layout_constraintLeft_toLeftOf="parent"
+               android:layout_marginStart="8dp" />
 
            <Button
                android:id="@+id/btnSelecionarOperador"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:text="Selecionar"
-               android:layout_below="@+id/btnSelecionarCliente"
-               android:layout_alignStart="@+id/btnSelecionarCliente" />
+               android:layout_marginTop="8dp"
+               app:layout_constraintTop_toBottomOf="@+id/btnSelecionarCliente"
+               android:layout_marginRight="8dp"
+               app:layout_constraintRight_toRightOf="parent"
+               android:layout_marginEnd="8dp" />
 
            <Button
                android:id="@+id/btnSelecionarData"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:layout_alignStart="@+id/btnSelecionarOperador"
-               android:layout_below="@+id/btnSelecionarOperador"
-               android:layout_weight="0.41"
-               android:text="Selecionar" />
+               android:text="Selecionar"
+               android:layout_marginRight="8dp"
+               app:layout_constraintRight_toRightOf="parent"
+               android:layout_marginTop="8dp"
+               app:layout_constraintTop_toBottomOf="@+id/btnSelecionarOperador"
+               android:layout_marginEnd="8dp" />
 
            <TextView
-               android:id="@+id/txtDataSelecionadaPreVenda"
+               android:id="@+id/txtDataCriarPreAluguel"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:layout_alignParentStart="true"
-               android:layout_alignParentTop="true"
-               android:layout_marginStart="41dp"
-               android:layout_marginTop="113dp"
-               android:text="          " />
-
-           <TextView
-               android:id="@+id/textView14"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_alignParentStart="true"
-               android:layout_below="@+id/btnSelecionarOperador"
-               android:layout_marginTop="17dp"
-               android:text="Data:" />
-
-           <ScrollView
-               android:id="@+id/scrollViewProdutos"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_alignParentStart="true"
-               android:layout_below="@+id/btnAdicionarProdutoPreVenda"
-               android:layout_above="@+id/btnFinalizarPreAluguel">
-
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:orientation="vertical"
-                   android:weightSum="1">
-
-                   <ListView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_alignParentStart="true"
-                       android:layout_below="@+id/textView14"
-                       android:layout_marginTop="171dp"
-                       android:layout_weight="0.41" />
-
-               </LinearLayout>
-           </ScrollView>
-
-           <Button
-               android:id="@+id/btnAdicionarProdutoPreVenda"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="+"
-               android:layout_marginEnd="21dp"
-               android:layout_alignTop="@+id/space"
-               android:layout_alignParentEnd="true" />
+               android:layout_marginLeft="8dp"
+               android:layout_marginStart="8dp"
+               android:layout_marginTop="36dp"
+               android:text="Data:"
+               app:layout_constraintLeft_toLeftOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/txtOperadorCriarPreAluguel" />
 
            <Button
                android:id="@+id/btnRemoverProdutoPreVenda"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:text="-"
-               android:layout_alignTop="@+id/space"
-               android:layout_toStartOf="@+id/btnAdicionarProdutoPreVenda" />
+               app:layout_constraintLeft_toLeftOf="@+id/txtDataCriarPreAluguel"
+               android:layout_marginTop="8dp"
+               app:layout_constraintTop_toBottomOf="@+id/textView10"
+               android:layout_marginLeft="30dp" />
 
            <TextView
                android:id="@+id/textView10"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:text="Produtos:"
-               android:layout_alignBaseline="@+id/btnRemoverProdutoPreVenda"
-               android:layout_alignBottom="@+id/btnRemoverProdutoPreVenda"
-               android:layout_alignEnd="@+id/textView11" />
+               android:layout_marginTop="15dp"
+               android:gravity="center"
+               android:text="Produtos"
+               app:layout_constraintTop_toBottomOf="@+id/btnSelecionarData"
+               app:layout_constraintRight_toLeftOf="@+id/btnSelecionarData"
+               android:layout_marginRight="30dp"
+               android:layout_marginEnd="30dp" />
 
            <Button
-               android:id="@+id/btnFinalizarPreAluguel"
-               android:layout_width="match_parent"
+               android:id="@+id/btnConcluirPreVenda"
+               android:layout_width="336dp"
                android:layout_height="wrap_content"
-               android:layout_alignParentStart="true"
-               android:layout_alignParentTop="true"
-               android:layout_marginTop="464dp"
-               android:layout_weight="0.97"
-               android:text="Finalizar" />
-       </RelativeLayout>
+               android:layout_marginTop="35dp"
+               android:text="Concluir"
+               app:layout_constraintTop_toBottomOf="@+id/listView"
+               tools:layout_editor_absoluteX="8dp" />
+
+           <ListView
+               android:id="@+id/listView"
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:layout_marginEnd="8dp"
+               android:layout_marginLeft="8dp"
+               android:layout_marginRight="8dp"
+               android:layout_marginStart="8dp"
+               android:layout_marginTop="75dp"
+               app:layout_constraintHorizontal_bias="0.0"
+               app:layout_constraintLeft_toLeftOf="parent"
+               app:layout_constraintRight_toRightOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+           <Button
+               android:id="@+id/txtAdicionarProdutoPreAluguel"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginRight="30dp"
+               android:layout_marginTop="8dp"
+               android:text="+"
+               app:layout_constraintRight_toRightOf="@+id/listView"
+               app:layout_constraintTop_toBottomOf="@+id/textView10" />
+       </android.support.constraint.ConstraintLayout>
    </ScrollView>
 
 </RelativeLayout>
