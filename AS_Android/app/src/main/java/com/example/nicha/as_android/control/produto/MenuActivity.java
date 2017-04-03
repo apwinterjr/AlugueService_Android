@@ -1,4 +1,4 @@
-package com.example.nicha.as_android.produto;
+package com.example.nicha.as_android.control.produto;
 
 import android.app.Activity;
 import android.content.Intent;

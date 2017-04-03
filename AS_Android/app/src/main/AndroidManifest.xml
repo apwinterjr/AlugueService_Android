@@ -8,22 +8,23 @@
         android:label="AlugueService"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".control.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PaginaPrincipalActivity" />
-        <activity android:name=".pre_aluguel.MenuActivity" />
-        <activity android:name=".pre_aluguel.ConsultarActivity" />
-        <activity android:name=".pre_aluguel.CriarActivity" />
-        <activity android:name=".pre_aluguel.ResultadoActivity" />
-        <activity android:name=".produto.ResultadoActivity" />
-        <activity android:name=".produto.ConsultarActivity" />
-        <activity android:name=".produto.MenuActivity" />
-        <activity android:name=".produto.StatusActivity"></activity>
+        <activity android:name=".control.PaginaPrincipalActivity" />
+        <activity android:name=".control.pre_aluguel.MenuActivity" />
+        <activity android:name=".control.pre_aluguel.ConsultarActivity" />
+        <activity android:name=".control.pre_aluguel.CriarActivity" />
+        <activity android:name=".control.pre_aluguel.ResultadoActivity" />
+        <activity android:name=".control.produto.ResultadoActivity" />
+        <activity android:name=".control.produto.ConsultarActivity" />
+        <activity android:name=".control.produto.MenuActivity" />
+        <activity android:name=".control.produto.StatusActivity" />
+        <activity android:name=".control.pre_aluguel.SelecionarProdutoActivity"></activity>
     </application>
 
 </manifest>

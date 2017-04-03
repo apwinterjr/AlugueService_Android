@@ -1,4 +1,4 @@
-package com.example.nicha.as_android.pre_aluguel;
+package com.example.nicha.as_android.control.pre_aluguel;
 
 import android.app.Activity;
 import android.content.Intent;

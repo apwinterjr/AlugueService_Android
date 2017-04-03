@@ -1,15 +1,15 @@
-package com.example.nicha.as_android.produto;
+package com.example.nicha.as_android.control.pre_aluguel;
 
 import android.app.Activity;
 import android.os.Bundle;
 
 import com.example.nicha.as_android.R;
 
-public class ResultadoActivity extends Activity {
+public class SelecionarProdutoActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_produto_consulta_resultado);
+        setContentView(R.layout.activity_pre_aluguel_selecionar_produto);
     }
 }
