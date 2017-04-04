@@ -58,5 +58,9 @@ public class CriarActivity extends Activity
         startActivity(intent);
     }
 
+    public void selecionarCliente(View v){
+        Intent intent =  new Intent(getApplicationContext(), SelecionarClienteActivity.class);
+        startActivity(intent);
+    }
 
 }

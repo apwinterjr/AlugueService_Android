@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="7dp"
-        android:text="Selecione os produtos:"
+        android:text="Selecione os clientes:"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginStart="7dp"
         app:layout_constraintBottom_toBottomOf="@+id/editText" />

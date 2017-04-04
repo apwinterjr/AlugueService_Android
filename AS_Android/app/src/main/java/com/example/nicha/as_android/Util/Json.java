@@ -1,8 +1,12 @@
-package com.example.nicha.as_android.Util;
+package com.example.nicha.as_android.util;
 
+import android.util.JsonWriter;
 import android.util.Log;
 
+import com.example.nicha.as_android.dto.ClienteDTO;
 import com.example.nicha.as_android.dto.ProdutoDTO;
+import com.example.nicha.as_android.model.Cliente;
+import com.example.nicha.as_android.model.Endereco;
 import com.example.nicha.as_android.model.Produto;
 
 import org.json.JSONArray;
@@ -10,7 +14,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringWriter;
@@ -111,5 +114,47 @@ public class Json
             }
         }
 
+    }
+
+    public static ClienteDTO convertJSONtoClienteDtoLista(String jsonFile) throws JSONException
+    {
+        ClienteDTO clienteDto = new ClienteDTO();
+        JSONObject localObj = new JSONObject(jsonFile);
+        boolean ok = localObj.getBoolean("ok");
+        String mensagem = localObj.getString("mensagem");
+        JSONArray clientes = localObj.getJSONArray("lista");
+        List<Cliente> listaCliente = new ArrayList<Cliente>();
+        for (int j = 0; j < clientes.length(); j++)
+        {
+            JSONObject jsonObject = clientes.getJSONObject(j);
+            JSONObject jsonObjectEndereco = jsonObject.getJSONObject("endereco");
+            Cliente cliente = new Cliente();
+            Endereco endereco = new Endereco();
+
+            cliente.setIdCliente(jsonObject.getInt("idCliente"));
+            cliente.setNome(jsonObject.getString("nome"));
+            cliente.setSobrenome(jsonObject.getString("sobrenome"));
+            cliente.setCpf(jsonObject.getString("cpf"));
+            cliente.setDataNascimento(jsonObject.getLong("dataNascimento"));
+            cliente.setEmail(jsonObject.getString("email"));
+            cliente.setTelefone(jsonObject.getString("telefone"));
+            cliente.setCelular(jsonObject.getString("celular"));
+            cliente.setStatus(jsonObject.getInt("status"));
+            cliente.setDataCriacao(jsonObject.getLong("dataCriacao"));
+            cliente.setOperadorCriador(jsonObject.getInt("operadorCriador"));
+
+            endereco.setRua(jsonObjectEndereco.getString("rua"));
+            endereco.setNumero(jsonObjectEndereco.getString("numero"));
+            endereco.setCidade(jsonObjectEndereco.getString("cidade"));
+            endereco.setCep(jsonObjectEndereco.getString("cep"));
+            endereco.setBairro(jsonObjectEndereco.getString("bairro"));
+
+            cliente.setEndereco(endereco);
+            listaCliente.add(cliente);
+        }
+        clienteDto.setOk(ok);
+        clienteDto.setMensagem(mensagem);
+        clienteDto.setLista(listaCliente);
+        return clienteDto;
     }
 }

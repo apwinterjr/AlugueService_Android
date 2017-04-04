@@ -7,34 +7,36 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.nicha.as_android.R;
+import com.example.nicha.as_android.dto.ClienteDTO;
+import com.example.nicha.as_android.dto.ProdutoDTO;
+import com.example.nicha.as_android.model.Cliente;
+import com.example.nicha.as_android.model.Produto;
+import com.example.nicha.as_android.util.ClienteAdapter;
 import com.example.nicha.as_android.util.Json;
 import com.example.nicha.as_android.util.ProdutoAdapter;
-import com.example.nicha.as_android.dto.ProdutoDTO;
-import com.example.nicha.as_android.model.Produto;
 
 import org.json.JSONException;
 
 import java.net.URL;
 
-public class SelecionarProdutoActivity extends Activity
+public class SelecionarClienteActivity extends Activity
 {
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pre_aluguel_selecionar_produto);
-        loadProdutos();
+        setContentView(R.layout.activity_pre_aluguel_selecionar_cliente);
+        loadClientes();
     }
 
-    private void loadProdutos()
+    private void loadClientes()
     {
         new DownloadFromWS().execute();
     }
 
     private class DownloadFromWS extends AsyncTask<Void, Void, String>
     {
-
         @Override
         protected String doInBackground(Void... params)
         {
@@ -42,7 +44,7 @@ public class SelecionarProdutoActivity extends Activity
 
             try
             {
-                URL url = new URL("http://10.0.2.2:9999/AlugueServiceWS/WS/Produto/Pesquisar");
+                URL url = new URL("http://10.0.2.2:9999/AlugueServiceWS/WS/Cliente/Pesquisar");
                 resultado = Json.conexaoJsonGet(url);
 
             } catch (Exception e)
@@ -52,17 +54,16 @@ public class SelecionarProdutoActivity extends Activity
             return resultado;
         }
 
-        @Override
         protected void onPostExecute(String s)
         {
             super.onPostExecute(s);
             try
             {
-                ProdutoDTO produtoDto = Json.convertJSONtoProdutoDTOLista(s);
-                if (produtoDto.isOk()){
-                    ArrayAdapter<Produto> produtoAdapter = new ProdutoAdapter(SelecionarProdutoActivity.this, R.layout.lista_produto,produtoDto.getLista());
+                ClienteDTO clienteDto = Json.convertJSONtoClienteDtoLista(s);
+                if (clienteDto.isOk()){
+                    ArrayAdapter<Cliente> clienteAdapter = new ClienteAdapter(SelecionarClienteActivity.this, R.layout.lista_produto,clienteDto.getLista());
                     ListView listViewProduto = (ListView) findViewById(R.id.listProdutos);
-                    listViewProduto.setAdapter(produtoAdapter);
+                    listViewProduto.setAdapter(clienteAdapter);
                 }
             } catch (JSONException e)
             {
@@ -70,6 +71,5 @@ public class SelecionarProdutoActivity extends Activity
             }
 
         }
-
     }
 }

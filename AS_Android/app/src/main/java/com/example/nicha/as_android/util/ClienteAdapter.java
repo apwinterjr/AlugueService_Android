@@ -8,49 +8,57 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.nicha.as_android.R;
+import com.example.nicha.as_android.model.Cliente;
 import com.example.nicha.as_android.model.Produto;
 
 import java.util.List;
 
 /**
- * Created by nicha on 03/04/2017.
+ * Created by nicha on 04/04/2017.
  */
 
-public class ProdutoAdapter extends ArrayAdapter<Produto>
+public class ClienteAdapter extends ArrayAdapter<Cliente>
 {
-    private List<Produto> produtos;
+    private List<Cliente> clientes;
     private int layout;
 
-    public ProdutoAdapter(Context context, int resource, List<Produto> produtos){
-        super(context,resource,produtos);
-        this.produtos = produtos;
+    public ClienteAdapter(Context context, int resource, List<Cliente> clientes)
+    {
+        super(context, resource, clientes);
+        this.clientes = clientes;
         layout = resource;
     }
 
-    @Override
-    public View getView(int position, View contentView, ViewGroup parent){
+
+    public View getView(int position, View contentView, ViewGroup parent)
+    {
         View localView = contentView;
 
-        if(localView == null){
+        if (localView == null)
+        {
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            localView = inflater.inflate(layout,null);
+            localView = inflater.inflate(layout, null);
         }
 
-        Produto produto = produtos.get(position);
+        Cliente cliente = clientes.get(position);
 
-        if(produto != null){
+        if (cliente != null)
+        {
             TextView txtNome = (TextView) localView.findViewById(R.id.txtNomeProduto);
             TextView txtValor = (TextView) localView.findViewById(R.id.txtValorProduto);
 
 
-
-            if(txtNome != null){
-                txtNome.setText(produto.getNome());
+            if (txtNome != null)
+            {
+                txtNome.setText(cliente.getNome());
             }
-            if(txtValor != null){
-                txtValor.setText(produto.getValor().toString());
+            if (txtValor != null)
+            {
+                txtValor.setText(cliente.getCpf().toString());
             }
         }
         return localView;
     }
+
+
 }
