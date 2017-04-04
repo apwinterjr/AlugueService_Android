@@ -3,9 +3,12 @@ package com.example.nicha.as_android.control.pre_aluguel;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.example.nicha.as_android.R;
 import com.example.nicha.as_android.Util.Json;
+import com.example.nicha.as_android.Util.ProdutoAdapter;
 import com.example.nicha.as_android.dto.ProdutoDTO;
 import com.example.nicha.as_android.model.Produto;
 
@@ -41,7 +44,7 @@ public class SelecionarProdutoActivity extends Activity
 
             try
             {
-                URL url = new URL("http://localhost:9999/AlugueServiceWS/WS/Produto/Pesquisar");
+                URL url = new URL("http://10.0.2.2:9999/AlugueServiceWS/WS/Produto/Pesquisar");
                 resultado = Json.conexaoJsonGet(url);
 
             } catch (Exception e)
@@ -59,7 +62,9 @@ public class SelecionarProdutoActivity extends Activity
             {
                 ProdutoDTO produtoDto = Json.convertJSONtoProdutoDTOLista(s);
                 if (produtoDto.isOk()){
-                    Array
+                    ArrayAdapter<Produto> produtoAdapter = new ProdutoAdapter(SelecionarProdutoActivity.this, R.layout.lista_produto,produtoDto.getLista());
+                    ListView listViewProduto = (ListView) findViewById(R.id.listProdutos);
+                    listViewProduto.setAdapter(produtoAdapter);
                 }
             } catch (JSONException e)
             {

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.nicha.as_android">
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@drawable/logoas"
         android:label="AlugueService"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".control.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -36,7 +36,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
-        android:layout_above="@+id/textView" />
+        android:layout_above="@+id/textView"
+        />
 
     <EditText
         android:layout_width="wrap_content"
@@ -46,7 +47,8 @@
         android:id="@+id/txtUsuario"
         android:layout_above="@+id/textView2"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp"
+        />
 
     <TextView
         android:text="Usuário"
