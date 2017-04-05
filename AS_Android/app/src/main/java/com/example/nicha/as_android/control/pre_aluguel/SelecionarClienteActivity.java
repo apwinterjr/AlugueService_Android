@@ -3,8 +3,11 @@ package com.example.nicha.as_android.control.pre_aluguel;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.nicha.as_android.R;
 import com.example.nicha.as_android.dto.ClienteDTO;
@@ -18,21 +21,66 @@ import com.example.nicha.as_android.util.ProdutoAdapter;
 import org.json.JSONException;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SelecionarClienteActivity extends Activity
 {
+
+    List<Cliente> listaCliente = new ArrayList<Cliente>();
+    ListView listViewCliente;
+    ClienteDTO clienteDto;
+    ArrayAdapter<Cliente> clienteAdapter;
+    EditText txtPesquisa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_aluguel_selecionar_cliente);
+        listViewCliente = (ListView) findViewById(R.id.listCliente);
+        txtPesquisa = (EditText) findViewById(R.id.editTxtPesquisarCliente);
+        clienteDto = new ClienteDTO();
         loadClientes();
+
     }
 
     private void loadClientes()
     {
         new DownloadFromWS().execute();
+    }
+
+    public void pesquisarCliente(View v)
+    {
+        String s = txtPesquisa.getText().toString().toLowerCase().trim();
+        if (!s.isEmpty())
+        {
+            List<Cliente> listaFiltrada = new ArrayList<Cliente>();
+            if (listaCliente == null)
+            {
+                loadClientes();
+            }
+            for (Cliente cliente : listaCliente
+                    )
+            {
+                if (cliente.getNome().toLowerCase().contains(s) || cliente.getSobrenome().toLowerCase().contains(s) || cliente.getCpf().contains(s))
+                {
+                    listaFiltrada.add(cliente);
+                }
+            }
+            if (listaFiltrada.size() != 0)
+            {
+                adicionarNaLista(listaFiltrada);
+            }
+        }else{
+            adicionarNaLista(listaCliente);
+        }
+    }
+
+    public void adicionarNaLista(List<Cliente> clientes)
+    {
+        clienteAdapter = new ClienteAdapter(SelecionarClienteActivity.this, R.layout.lista_produto, clientes);
+        listViewCliente.setAdapter(clienteAdapter);
     }
 
     private class DownloadFromWS extends AsyncTask<Void, Void, String>
@@ -59,11 +107,11 @@ public class SelecionarClienteActivity extends Activity
             super.onPostExecute(s);
             try
             {
-                ClienteDTO clienteDto = Json.convertJSONtoClienteDtoLista(s);
-                if (clienteDto.isOk()){
-                    ArrayAdapter<Cliente> clienteAdapter = new ClienteAdapter(SelecionarClienteActivity.this, R.layout.lista_produto,clienteDto.getLista());
-                    ListView listViewProduto = (ListView) findViewById(R.id.listProdutos);
-                    listViewProduto.setAdapter(clienteAdapter);
+                clienteDto = Json.convertJSONtoClienteDtoLista(s);
+                if (clienteDto.isOk())
+                {
+                    adicionarNaLista(clienteDto.getLista());
+                    listaCliente = clienteDto.getLista();
                 }
             } catch (JSONException e)
             {
