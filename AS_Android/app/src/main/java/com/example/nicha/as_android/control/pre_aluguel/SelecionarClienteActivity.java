@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nicha.as_android.R;
 import com.example.nicha.as_android.dto.ClienteDTO;
@@ -32,6 +34,7 @@ public class SelecionarClienteActivity extends Activity
     ClienteDTO clienteDto;
     ArrayAdapter<Cliente> clienteAdapter;
     EditText txtPesquisa;
+    Cliente clienteSelecionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -42,13 +45,36 @@ public class SelecionarClienteActivity extends Activity
         txtPesquisa = (EditText) findViewById(R.id.editTxtPesquisarCliente);
         clienteDto = new ClienteDTO();
         loadClientes();
+        listViewCliente.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            // TODO: 04/04/2017 Debuggar a seleção de item;
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+                    {
+                        clienteSelecionado = new Cliente();
+                        TextView itemSelecionado = (TextView) view.findViewById(R.id.txtIdLista);
+                        clienteSelecionado.setIdCliente(Integer.parseInt(itemSelecionado.getText().toString()));
 
+                        for (Cliente c : clienteDto.getLista())
+                        {
+                            if (c.getIdCliente() == clienteSelecionado.getIdCliente())
+                            {
+                                clienteSelecionado = c;
+                                Toast.makeText(SelecionarClienteActivity.this, clienteSelecionado.getNome() + " " + clienteSelecionado.getSobrenome(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                    }
+
+                }
+        );
     }
 
-    private void loadClientes()
-    {
-        new DownloadFromWS().execute();
-    }
+
+
+        private void loadClientes ()
+        {
+            new DownloadFromWS().execute();
+        }
 
     public void pesquisarCliente(View v)
     {
@@ -72,7 +98,8 @@ public class SelecionarClienteActivity extends Activity
             {
                 adicionarNaLista(listaFiltrada);
             }
-        }else{
+        } else
+        {
             adicionarNaLista(listaCliente);
         }
     }
