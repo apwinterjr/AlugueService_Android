@@ -1,6 +1,7 @@
 package com.example.nicha.as_android.control.pre_aluguel;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -44,6 +45,17 @@ public class SelecionarClienteActivity extends Activity {
         txtPesquisa = (EditText) findViewById(R.id.editTxtPesquisarCliente);
         clienteDto = new ClienteDTO();
         loadClientes();
+        listViewCliente.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Cliente c = (Cliente) listViewCliente.getItemAtPosition(position);
+
+                Intent intent = new Intent();
+                intent.putExtra("id", c.getIdCliente());
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        });
     }
 
 
