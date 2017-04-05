@@ -26,15 +26,6 @@
             android:layout_below="@+id/txtNomeProduto"
             android:layout_alignParentStart="true" />
 
-        <TextView
-            android:id="@+id/txtIdLista"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/txtValorProduto"
-            android:text="TextView"
-            android:visibility="invisible"/>
-
     </RelativeLayout>
 
 </LinearLayout>

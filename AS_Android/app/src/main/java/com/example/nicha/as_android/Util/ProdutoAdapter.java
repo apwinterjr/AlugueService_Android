@@ -41,7 +41,6 @@ public class ProdutoAdapter extends ArrayAdapter<Produto>
         if(produto != null){
             TextView txtNome = (TextView) localView.findViewById(R.id.txtNomeProduto);
             TextView txtValor = (TextView) localView.findViewById(R.id.txtValorProduto);
-            TextView txtId = (TextView) localView.findViewById(R.id.txtIdLista);
 
             if(txtNome != null){
                 txtNome.setText(produto.getNome());
@@ -49,9 +48,7 @@ public class ProdutoAdapter extends ArrayAdapter<Produto>
             if(txtValor != null){
                 txtValor.setText(produto.getValor().toString());
             }
-            if (txtId != null){
-                txtId.setText(produto.getIdProduto());
-            }
+
         }
         return localView;
     }
