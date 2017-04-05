@@ -46,7 +46,7 @@
 
         <Button
             android:id="@+id/btnProduto"
-            android:layout_width="365dp"
+            android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_alignStart="@+id/btnPreAluguel"
             android:layout_below="@+id/btnPreAluguel"
