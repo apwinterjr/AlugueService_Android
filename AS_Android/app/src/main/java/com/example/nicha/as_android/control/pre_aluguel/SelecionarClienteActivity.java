@@ -45,28 +45,6 @@ public class SelecionarClienteActivity extends Activity
         txtPesquisa = (EditText) findViewById(R.id.editTxtPesquisarCliente);
         clienteDto = new ClienteDTO();
         loadClientes();
-        listViewCliente.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            // TODO: 04/04/2017 Debuggar a seleção de item;
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-                    {
-                        clienteSelecionado = new Cliente();
-                        TextView itemSelecionado = (TextView) view.findViewById(R.id.txtIdLista);
-                        clienteSelecionado.setIdCliente(Integer.parseInt(itemSelecionado.getText().toString()));
-
-                        for (Cliente c : clienteDto.getLista())
-                        {
-                            if (c.getIdCliente() == clienteSelecionado.getIdCliente())
-                            {
-                                clienteSelecionado = c;
-                                Toast.makeText(SelecionarClienteActivity.this, clienteSelecionado.getNome() + " " + clienteSelecionado.getSobrenome(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-
-                    }
-
-                }
-        );
     }
 
 

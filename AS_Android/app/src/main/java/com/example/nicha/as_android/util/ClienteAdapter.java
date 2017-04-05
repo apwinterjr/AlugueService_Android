@@ -46,7 +46,6 @@ public class ClienteAdapter extends ArrayAdapter<Cliente>
         {
             TextView txtNome = (TextView) localView.findViewById(R.id.txtNomeProduto);
             TextView txtValor = (TextView) localView.findViewById(R.id.txtValorProduto);
-            TextView txtId = (TextView) localView.findViewById(R.id.txtIdLista);
 
             if (txtNome != null)
             {
@@ -56,9 +55,7 @@ public class ClienteAdapter extends ArrayAdapter<Cliente>
             {
                 txtValor.setText(cliente.getCpf().toString());
             }
-            if (txtId != null){
-                txtId.setText(cliente.getIdCliente());
-            }
+
         }
         return localView;
     }
