@@ -27,17 +27,20 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SelecionarClienteActivity extends Activity {
+public class SelecionarClienteActivity extends Activity
+{
+
 
     List<Cliente> listaCliente;
     ListView listViewCliente;
     ClienteDTO clienteDto;
     ArrayAdapter<Cliente> clienteAdapter;
     EditText txtPesquisa;
-    Cliente clienteSelecionado;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_aluguel_selecionar_cliente);
         listaCliente = new ArrayList<Cliente>();
@@ -45,13 +48,14 @@ public class SelecionarClienteActivity extends Activity {
         txtPesquisa = (EditText) findViewById(R.id.editTxtPesquisarCliente);
         clienteDto = new ClienteDTO();
         loadClientes();
-        listViewCliente.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listViewCliente.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
                 Cliente c = (Cliente) listViewCliente.getItemAtPosition(position);
-
+                CriarActivity.clienteSelecionado = c;
                 Intent intent = new Intent();
-                intent.putExtra("id", c.getIdCliente());
                 setResult(RESULT_OK, intent);
                 finish();
             }
@@ -59,60 +63,81 @@ public class SelecionarClienteActivity extends Activity {
     }
 
 
-    private void loadClientes() {
+    private void loadClientes()
+    {
         new DownloadFromWS().execute();
     }
 
-    public void pesquisarCliente(View v) {
+    public void pesquisarCliente(View v)
+    {
         String s = txtPesquisa.getText().toString().toLowerCase().trim();
-        if (!s.isEmpty()) {
+        if (!s.isEmpty())
+        {
             List<Cliente> listaFiltrada = new ArrayList<Cliente>();
-            if (listaCliente == null) {
+            if (listaCliente == null)
+            {
                 loadClientes();
             }
             for (Cliente cliente : listaCliente
-                    ) {
-                if (cliente.getNome().toLowerCase().contains(s) || cliente.getSobrenome().toLowerCase().contains(s) || cliente.getCpf().contains(s)) {
+                    )
+            {
+                if (cliente.getNome().toLowerCase().contains(s) || cliente.getSobrenome().toLowerCase().contains(s) || cliente.getCpf().contains(s))
+                {
                     listaFiltrada.add(cliente);
                 }
             }
-            if (listaFiltrada.size() != 0) {
+            if (listaFiltrada.size() != 0)
+            {
                 adicionarNaLista(listaFiltrada);
+            } else
+            {
+                Toast.makeText(this, "Nenhum registro encontrado.", Toast.LENGTH_SHORT).show();
             }
-        } else {
+        } else
+        {
+            Toast.makeText(this, "Informe nome do cliente.", Toast.LENGTH_SHORT).show();
             adicionarNaLista(listaCliente);
         }
     }
 
-    public void adicionarNaLista(List<Cliente> clientes) {
+    public void adicionarNaLista(List<Cliente> clientes)
+    {
         clienteAdapter = new ClienteAdapter(SelecionarClienteActivity.this, R.layout.lista_produto, clientes);
         listViewCliente.setAdapter(clienteAdapter);
     }
 
-  private class DownloadFromWS extends AsyncTask<Void, Void, String> {
+    private class DownloadFromWS extends AsyncTask<Void, Void, String>
+    {
         @Override
-        protected String doInBackground(Void... params) {
+        protected String doInBackground(Void... params)
+        {
             String resultado = null;
 
-            try {
+            try
+            {
                 URL url = new URL("http://10.0.2.2:9999/AlugueServiceWS/WS/Cliente/Pesquisar");
                 resultado = Json.conexaoJsonGet(url);
 
-            } catch (Exception e) {
+            } catch (Exception e)
+            {
                 e.printStackTrace();
             }
             return resultado;
         }
 
-        protected void onPostExecute(String s) {
+        protected void onPostExecute(String s)
+        {
             super.onPostExecute(s);
-            try {
+            try
+            {
                 clienteDto = Json.convertJSONtoClienteDtoLista(s);
-                if (clienteDto.isOk()) {
+                if (clienteDto.isOk())
+                {
                     adicionarNaLista(clienteDto.getLista());
                     listaCliente = clienteDto.getLista();
                 }
-            } catch (JSONException e) {
+            } catch (JSONException e)
+            {
                 e.printStackTrace();
             }
 

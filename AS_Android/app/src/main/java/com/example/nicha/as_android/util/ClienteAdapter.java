@@ -49,7 +49,7 @@ public class ClienteAdapter extends ArrayAdapter<Cliente>
 
             if (txtNome != null)
             {
-                txtNome.setText(cliente.getNome());
+                txtNome.setText(cliente.getNome() +" "+ cliente.getSobrenome());
             }
             if (txtValor != null)
             {

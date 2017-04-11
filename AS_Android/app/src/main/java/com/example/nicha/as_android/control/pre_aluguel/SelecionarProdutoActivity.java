@@ -1,8 +1,11 @@
 package com.example.nicha.as_android.control.pre_aluguel;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -18,13 +21,47 @@ import java.net.URL;
 
 public class SelecionarProdutoActivity extends Activity
 {
+    ListView listViewProduto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_aluguel_selecionar_produto);
+        listViewProduto = (ListView) findViewById(R.id.listProdutos);
         loadProdutos();
+        listViewProduto.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                Produto p = (Produto) listViewProduto.getItemAtPosition(position);
+                Intent intent = new Intent();
+                if(adicionarProdutoNaLista(p)){
+                    setResult(RESULT_OK, intent);
+                }
+                finish();
+            }
+        });
+    }
+
+    private Boolean adicionarProdutoNaLista(Produto p){
+        Boolean ok = true;
+        for (Produto produto : CriarActivity.listaProdutoSelecionado
+             )
+        {
+            if(produto.getIdProduto() == p.getIdProduto()){
+
+                ok = false;
+            }
+        }
+        if (ok){
+            CriarActivity.listaProdutoSelecionado.add(p);
+            return true;
+        }else {
+            return false;
+        }
+
     }
 
     private void loadProdutos()
