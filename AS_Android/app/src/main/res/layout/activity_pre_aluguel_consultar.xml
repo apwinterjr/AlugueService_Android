@@ -42,12 +42,13 @@
         android:layout_toEndOf="@+id/textView5" />
 
     <Button
-        android:text="Consultar"
+        android:id="@+id/btnConsultarPreAluguel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:id="@+id/btnConsultarPreAluguel"
-        android:layout_below="@+id/txtPreAluguel"
         android:layout_alignEnd="@+id/txtPreAluguel"
-        android:layout_alignStart="@+id/txtPreAluguel" />
+        android:layout_alignStart="@+id/txtPreAluguel"
+        android:layout_below="@+id/txtPreAluguel"
+        android:layout_marginTop="25dp"
+        android:onClick="consultarPreAluguel"
+        android:text="Consultar"/>
 </RelativeLayout>

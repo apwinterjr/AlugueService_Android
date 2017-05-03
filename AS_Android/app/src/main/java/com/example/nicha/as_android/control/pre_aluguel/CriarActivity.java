@@ -1,8 +1,6 @@
 package com.example.nicha.as_android.control.pre_aluguel;
 
 import android.app.Activity;
-import android.app.DatePickerDialog;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -13,12 +11,13 @@ import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.wdullaer.materialdatetimepicker.*;
 import com.example.nicha.as_android.R;
 import com.example.nicha.as_android.model.Cliente;
 import com.example.nicha.as_android.model.PreAluguel;
 import com.example.nicha.as_android.model.Produto;
 import com.example.nicha.as_android.util.ProdutoAdapter;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -67,7 +66,24 @@ public class CriarActivity extends Activity
             @Override
             public void onClick(View v)
             {
-                new DatePickerDialog(CriarActivity.this, listner, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+                DatePickerDialog dpd = new DatePickerDialog().newInstance(listner, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+                Calendar dia;
+                List<Calendar> diasAtivos = new ArrayList<>();
+
+
+                for (int i = 1; i <= 30; i++  )
+                {
+                    dia = Calendar.getInstance();
+                    dia.add(Calendar.DATE,i);
+                    if(dia.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY){
+                        diasAtivos.add(dia);
+
+                    }
+                }
+                Calendar[] diasSelecionaveis = diasAtivos.toArray(new Calendar[diasAtivos.size()]);
+                dpd.setSelectableDays(diasSelecionaveis);
+                dpd.show(getFragmentManager(), "Datepickerdialog");
+
             }
         });
     }
@@ -75,12 +91,13 @@ public class CriarActivity extends Activity
     DatePickerDialog.OnDateSetListener listner = new DatePickerDialog.OnDateSetListener()
     {
         @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
+        public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth)
         {
             TextView txtDataSelecionada = (TextView) findViewById(R.id.txtDataCriarPreAluguel);
-            txtDataSelecionada.setText("Data: " + dayOfMonth + "/" + month + "/" + year);
+            txtDataSelecionada.setText("Data: " + dayOfMonth + "/" + monthOfYear + "/" + year);
         }
     };
+
 
     public void adicionarProduto(View v)
     {
@@ -103,10 +120,11 @@ public class CriarActivity extends Activity
 
     public void removerProdutoLista(View v)
     {
-        if(produtoSelecionado != null){
+        if(produtoSelecionado != null || produtoSelecionado.getIdProduto() != 0){
             listaProdutoSelecionado.remove(produtoSelecionado);
             adicionarNaListView(listaProdutoSelecionado);
             Toast.makeText(this, produtoSelecionado.getNome() + " removido", Toast.LENGTH_SHORT).show();
+            produtoSelecionado = new Produto();
         }else{
             Toast.makeText(this, "Nenhum produto selecionado.", Toast.LENGTH_SHORT).show();
         }

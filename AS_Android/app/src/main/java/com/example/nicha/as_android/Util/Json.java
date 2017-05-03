@@ -3,10 +3,14 @@ package com.example.nicha.as_android.util;
 import android.util.JsonWriter;
 import android.util.Log;
 
+import com.example.nicha.as_android.dto.OperadorDTO;
+import com.example.nicha.as_android.dto.PreAluguelDTO;
+import com.google.gson.*;
 import com.example.nicha.as_android.dto.ClienteDTO;
 import com.example.nicha.as_android.dto.ProdutoDTO;
 import com.example.nicha.as_android.model.Cliente;
 import com.example.nicha.as_android.model.Endereco;
+import com.example.nicha.as_android.model.Operador;
 import com.example.nicha.as_android.model.Produto;
 
 import org.json.JSONArray;
@@ -16,13 +20,17 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 import java.math.BigDecimal;
 import java.net.HttpURLConnection;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.net.ssl.HttpsURLConnection;
 
 /**
  * Created by nicha on 03/04/2017.
@@ -30,6 +38,7 @@ import java.util.List;
 
 public class Json
 {
+    private static Gson g = new Gson();
 
     public static String webToString(InputStream inputStream)
     {
@@ -156,5 +165,88 @@ public class Json
         clienteDto.setMensagem(mensagem);
         clienteDto.setLista(listaCliente);
         return clienteDto;
+    }
+
+    private static String getOperadorJson(Operador operador){
+
+        return g.toJson(operador);
+    }
+    public static OperadorDTO jsonToOperadorDTO (String s){
+        return g.fromJson(s,OperadorDTO.class);
+    }
+    public static String conexaoJsonPostLogin(URL url,Operador operador) throws ProtocolException
+    {
+
+
+        HttpURLConnection urlConnection = null;
+
+        try
+        {
+            urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("POST");
+            //urlConnection.setReadTimeout(10000 /* milliseconds */);
+            //urlConnection.setConnectTimeout(15000 /* milliseconds */);
+            urlConnection.setRequestProperty("Content-Type",
+                    "application/json");
+            OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
+            wr.write(getOperadorJson(operador));
+            wr.flush();
+
+            String result = webToString(urlConnection.getInputStream());
+            return result;
+        } catch (Exception e)
+        {
+            Log.e("Error", "Error ", e);
+            return null;
+        } finally
+        {
+            if (urlConnection != null)
+            {
+                urlConnection.disconnect();
+            }
+        }
+
+
+
+    }
+
+    public static PreAluguelDTO toPreAluguelDTO(String s)
+    {
+        return g.fromJson(s,PreAluguelDTO.class);
+    }
+    public static String toJson(Object obj){
+        return g.toJson(obj);
+    }
+
+
+    public static String recuperar(URL url)
+    {
+        HttpURLConnection urlConnection = null;
+        try
+        {
+            urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("GET");
+            urlConnection.setReadTimeout(10000 /* milliseconds */);
+            urlConnection.setConnectTimeout(15000 /* milliseconds */);
+            urlConnection.connect();
+            String result = webToString(urlConnection.getInputStream());
+            return result;
+        } catch (Exception e)
+        {
+            Log.e("Error", "Error ", e);
+            return null;
+        } finally
+        {
+            if (urlConnection != null)
+            {
+                urlConnection.disconnect();
+            }
+        }
+
+    }
+
+    public static ProdutoDTO toProdutoDTO(String json)
+    {
+        return g.fromJson(json,ProdutoDTO.class);
     }
 }

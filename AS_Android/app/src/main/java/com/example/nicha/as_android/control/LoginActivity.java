@@ -2,19 +2,29 @@ package com.example.nicha.as_android.control;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.nicha.as_android.R;
+import com.example.nicha.as_android.dto.OperadorDTO;
+import com.example.nicha.as_android.model.Operador;
+import com.example.nicha.as_android.util.Json;
+
+import org.json.JSONException;
+
+import java.net.URL;
 
 public class LoginActivity extends Activity {
 
+    Operador operador;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        operador = new Operador();
         EditText l = (EditText) findViewById(R.id.txtUsuario);
         l.requestFocus();
     }
@@ -25,14 +35,45 @@ public class LoginActivity extends Activity {
         String pass = "admin";
         String login = l.getText().toString();
         String senha = s.getText().toString();
+        operador.setLogin(login);
+        operador.setSenha(senha);
 
-        if (senha.equals(pass) && login.equals(pass))
+        new Autenticar().execute();
+    }
+
+    private class Autenticar extends AsyncTask<Void, Void, String>
+    {
+        @Override
+        protected String doInBackground(Void... params)
         {
-            Intent intent =  new Intent(getApplicationContext(), PaginaPrincipalActivity.class);
-            startActivity(intent);
+            String resultado = null;
+
+            try
+            {
+                URL url = new URL("http://10.0.2.2:9999/AlugueServiceWS/WS/Operador/Autenticar");
+                resultado = Json.conexaoJsonPostLogin(url,operador);
+
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            return resultado;
         }
-        else{
-            Toast.makeText(this, "Login e/ou senha incorreto.", Toast.LENGTH_SHORT).show();
+
+        protected void onPostExecute(String s)
+        {
+            super.onPostExecute(s);
+            OperadorDTO operadorDTO = Json.jsonToOperadorDTO(s);
+            if (operadorDTO.isOk())
+            {
+                Intent intent =  new Intent(getApplicationContext(), PaginaPrincipalActivity.class);
+                startActivity(intent);
+            }
+            else{
+                Toast.makeText(LoginActivity.this, operadorDTO.getMensagem(), Toast.LENGTH_SHORT).show();
+            }
+
         }
     }
+
 }

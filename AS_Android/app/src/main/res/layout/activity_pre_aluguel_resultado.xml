@@ -31,7 +31,7 @@
                 android:minHeight="56dp">
 
                 <TextView
-                    android:id="@+id/textView19"
+                    android:id="@+id/txtNomeConsultarPreAluguel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
@@ -42,7 +42,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView21"
+                    android:id="@+id/txtCpfConsultarPreAluguel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
@@ -50,10 +50,10 @@
                     android:layout_marginTop="8dp"
                     android:text="CPF:"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView19" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtNomeConsultarPreAluguel" />
 
                 <TextView
-                    android:id="@+id/textView22"
+                    android:id="@+id/txtTelefoneConsultarPreAluguel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
@@ -63,7 +63,7 @@
                     android:text="Telefone:"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView21" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtCpfConsultarPreAluguel"/>
             </android.support.constraint.ConstraintLayout>
 
             <TextView
@@ -79,7 +79,7 @@
                 android:minHeight="60dp">
 
                 <TextView
-                    android:id="@+id/textView24"
+                    android:id="@+id/txtIdOperadorConsultarPreAluguel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
@@ -98,7 +98,7 @@
                     android:layout_marginTop="8dp"
                     android:text="Nome:"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView24" />
+                    app:layout_constraintTop_toBottomOf="@+id/txtIdOperadorConsultarPreAluguel" />
 
             </android.support.constraint.ConstraintLayout>
 
