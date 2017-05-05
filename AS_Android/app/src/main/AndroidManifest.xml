@@ -37,8 +37,6 @@
         <activity android:name=".control.pre_aluguel.SelecionarProdutoActivity"/>
         <activity android:name=".control.pre_aluguel.SelecionarClienteActivity">
         </activity>
-        <activity android:name=".control.produto.SelecionarProdutoActivity">
-        </activity>
     </application>
 
 </manifest>

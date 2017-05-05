@@ -12,6 +12,7 @@ import com.example.nicha.as_android.R;
 import com.example.nicha.as_android.dto.OperadorDTO;
 import com.example.nicha.as_android.model.Operador;
 import com.example.nicha.as_android.util.Json;
+import com.example.nicha.as_android.util.Util;
 
 import org.json.JSONException;
 
@@ -50,12 +51,12 @@ public class LoginActivity extends Activity {
 
             try
             {
-                URL url = new URL("http://10.0.2.2:9999/AlugueServiceWS/WS/Operador/Autenticar");
+                URL url = new URL(Util.URL_WS+"Operador/Autenticar");
                 resultado = Json.conexaoJsonPostLogin(url,operador);
 
             } catch (Exception e)
             {
-                e.printStackTrace();
+                Toast.makeText(LoginActivity.this, "Link incorreto para o servidor.", Toast.LENGTH_SHORT).show();
             }
             return resultado;
         }
