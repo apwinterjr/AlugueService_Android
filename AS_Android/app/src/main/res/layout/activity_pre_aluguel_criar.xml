@@ -94,9 +94,10 @@
                android:layout_width="336dp"
                android:layout_height="wrap_content"
                android:layout_marginTop="16dp"
+               android:onClick="concluirPreAluguel"
                android:text="Concluir"
                app:layout_constraintTop_toBottomOf="@+id/listViewProdutoSelecionado"
-               tools:layout_editor_absoluteX="8dp" />
+               tools:layout_editor_absoluteX="8dp"/>
 
            <ListView
                android:id="@+id/listViewProdutoSelecionado"
@@ -118,10 +119,10 @@
                android:layout_height="wrap_content"
                android:layout_marginRight="30dp"
                android:layout_marginTop="8dp"
-               android:onClick="adicionarProdutoStatus"
+               android:onClick="adicionarProduto"
                android:text="+"
                app:layout_constraintRight_toRightOf="@+id/listViewProdutoSelecionado"
-               app:layout_constraintTop_toBottomOf="@+id/textView10" />
+               app:layout_constraintTop_toBottomOf="@+id/textView10"/>
        </android.support.constraint.ConstraintLayout>
    </ScrollView>
 

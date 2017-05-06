@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.example.nicha.as_android.dto.OperadorDTO;
 import com.example.nicha.as_android.dto.PreAluguelDTO;
+import com.example.nicha.as_android.model.PreAluguel;
 import com.google.gson.*;
 import com.example.nicha.as_android.dto.ClienteDTO;
 import com.example.nicha.as_android.dto.ProdutoDTO;
@@ -167,14 +168,18 @@ public class Json
         return clienteDto;
     }
 
-    private static String getOperadorJson(Operador operador){
+    private static String getOperadorJson(Operador operador)
+    {
 
         return g.toJson(operador);
     }
-    public static OperadorDTO jsonToOperadorDTO (String s){
-        return g.fromJson(s,OperadorDTO.class);
+
+    public static OperadorDTO jsonToOperadorDTO(String s)
+    {
+        return g.fromJson(s, OperadorDTO.class);
     }
-    public static String conexaoJsonPostLogin(URL url,Operador operador) throws ProtocolException
+
+    public static String conexaoJsonPostLogin(URL url, Operador operador) throws ProtocolException
     {
 
 
@@ -207,14 +212,15 @@ public class Json
         }
 
 
-
     }
 
     public static PreAluguelDTO toPreAluguelDTO(String s)
     {
-        return g.fromJson(s,PreAluguelDTO.class);
+        return g.fromJson(s, PreAluguelDTO.class);
     }
-    public static String toJson(Object obj){
+
+    public static String toJson(Object obj)
+    {
         return g.toJson(obj);
     }
 
@@ -247,6 +253,51 @@ public class Json
 
     public static ProdutoDTO toProdutoDTO(String json)
     {
-        return g.fromJson(json,ProdutoDTO.class);
+        return g.fromJson(json, ProdutoDTO.class);
     }
+
+
+    public static String conexaoJsonPostPreAluguel(URL url, PreAluguel preAluguel) throws ProtocolException
+    {
+
+
+        HttpURLConnection urlConnection = null;
+
+        try
+        {
+            urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("POST");
+            //urlConnection.setReadTimeout(10000 /* milliseconds */);
+            //urlConnection.setConnectTimeout(15000 /* milliseconds */);
+            urlConnection.setRequestProperty("Content-Type",
+                    "application/json");
+            OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
+            wr.write(toJson(preAluguel));
+            wr.flush();
+
+            String result = webToString(urlConnection.getInputStream());
+            return result;
+        } catch (Exception e)
+        {
+            Log.e("Error", "Error ", e);
+            return null;
+        } finally
+        {
+            if (urlConnection != null)
+            {
+                urlConnection.disconnect();
+            }
+        }
+    }
+
+    public static PreAluguelDTO jsonToPreAlugueDTO(String s)
+    {
+        return g.fromJson(s, PreAluguelDTO.class);
+    }
+
+    public static Object deserialize(String s, Object obj){
+        return g.fromJson(s,obj.class);
+    }
+
 }
+

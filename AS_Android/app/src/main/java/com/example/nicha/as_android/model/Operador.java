@@ -25,7 +25,7 @@ public class Operador {
         private String   senha;
         private int      nivel;
         private long     dataCriacao;
-        private Integer operadorCriador;
+        private int operadorCriador;
 
     /*
      * Função construtora

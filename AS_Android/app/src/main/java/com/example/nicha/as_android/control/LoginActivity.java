@@ -21,6 +21,7 @@ import java.net.URL;
 public class LoginActivity extends Activity {
 
     Operador operador;
+    public static Operador operadorLogado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +34,6 @@ public class LoginActivity extends Activity {
     public void autenticar(View v){
         EditText l = (EditText) findViewById(R.id.txtUsuario);
         EditText s = (EditText) findViewById(R.id.txtSenha);
-        String pass = "admin";
         String login = l.getText().toString();
         String senha = s.getText().toString();
         operador.setLogin(login);

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.nicha.as_android.R;
 import com.example.nicha.as_android.util.Json;
@@ -101,7 +102,10 @@ public class SelecionarProdutoActivity extends Activity
                     ArrayAdapter<Produto> produtoAdapter = new ProdutoAdapter(SelecionarProdutoActivity.this, R.layout.lista_produto,produtoDto.getLista());
                     ListView listViewProduto = (ListView) findViewById(R.id.listProdutos);
                     listViewProduto.setAdapter(produtoAdapter);
+                }else{
+                    Toast.makeText(SelecionarProdutoActivity.this, produtoDto.getMensagem(), Toast.LENGTH_SHORT).show();
                 }
+
             } catch (JSONException e)
             {
                 e.printStackTrace();

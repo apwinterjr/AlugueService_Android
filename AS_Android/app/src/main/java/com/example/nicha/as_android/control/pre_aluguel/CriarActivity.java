@@ -2,8 +2,10 @@ package com.example.nicha.as_android.control.pre_aluguel;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.annotation.IntDef;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -11,6 +13,14 @@ import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.nicha.as_android.control.LoginActivity;
+import com.example.nicha.as_android.control.PaginaPrincipalActivity;
+import com.example.nicha.as_android.dto.OperadorDTO;
+import com.example.nicha.as_android.dto.PreAluguelDTO;
+import com.example.nicha.as_android.model.Operador;
+import com.example.nicha.as_android.util.Json;
+import com.example.nicha.as_android.util.Util;
 import com.wdullaer.materialdatetimepicker.*;
 import com.example.nicha.as_android.R;
 import com.example.nicha.as_android.model.Cliente;
@@ -19,6 +29,9 @@ import com.example.nicha.as_android.model.Produto;
 import com.example.nicha.as_android.util.ProdutoAdapter;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -95,6 +108,9 @@ public class CriarActivity extends Activity
         {
             TextView txtDataSelecionada = (TextView) findViewById(R.id.txtDataCriarPreAluguel);
             txtDataSelecionada.setText("Data: " + dayOfMonth + "/" + monthOfYear + "/" + year);
+            Calendar data = Calendar.getInstance();
+            data.set(year,monthOfYear,dayOfMonth);
+            preAluguel.setDataPrevista(data.getTimeInMillis());
         }
     };
 
@@ -137,6 +153,40 @@ public class CriarActivity extends Activity
         listViewProdutoSelecionado.setAdapter(ProdutoAdapter);
     }
 
+    public void concluirPreAluguel (View v){
+        preAluguel.setListaProdutos(listaProdutoSelecionado);
+        preAluguel.setOperadorCriador(1);
+        preAluguel.setStatusPreAluguel(1);
+        if(preAluguel.getCliente() == null){
+            Toast.makeText(this, "Cliente não selecionado.", Toast.LENGTH_SHORT).show();
+        }
+        if (!preAluguel.getListaProdutos().isEmpty())
+        {
+            preAluguel.setValorAluguel(0);
+            Float f = (float) 0;
+            for (Produto p : preAluguel.getListaProdutos())
+            {
+                f = p.getValor() + f;
+            }
+            preAluguel.setValorAluguel(f);
+            URL url = null;
+            try
+            {
+                url = new URL(Util.URL_WS+"PreAluguel/Cadastrar");
+                Json.conexaoJsonPostPreAluguel(url,preAluguel);
+            } catch (MalformedURLException e)
+            {
+                e.printStackTrace();
+            }
+             catch (ProtocolException e)
+            {
+                e.printStackTrace();
+            }
+        }else{
+            Toast.makeText(this, "Lista de produto vazia.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
@@ -157,11 +207,48 @@ public class CriarActivity extends Activity
             {
                 adicionarClientePreAluguel(clienteSelecionado);
                 Toast.makeText(this,clienteSelecionado.getNome() + clienteSelecionado.getSobrenome() + " selecionado.", Toast.LENGTH_SHORT).show();
-
+                preAluguel.setCliente(clienteSelecionado);
             }
         }
 
 
     }
+
+    private class Autenticar extends AsyncTask<Void, Void, String>
+    {
+        @Override
+        protected String doInBackground(Void... params)
+        {
+            String resultado = null;
+
+            try
+            {
+                URL url = new URL(Util.URL_WS+"PreAluguel/Cadastrar");
+                resultado = Json.conexaoJsonPostPreAluguel(url,preAluguel);
+
+            } catch (Exception e)
+            {
+                Toast.makeText(CriarActivity.this, "Link incorreto para o servidor.", Toast.LENGTH_SHORT).show();
+            }
+            return resultado;
+        }
+
+        protected void onPostExecute(String s)
+        {
+            super.onPostExecute(s);
+            PreAluguelDTO preAluguelDTO = Json.jsonToPreAlugueDTO(s);
+            if (preAluguelDTO.isOk())
+            {
+                Toast.makeText(CriarActivity.this, "Pré alugue: "+preAluguelDTO.getPreAluguel().getIdPreAluguel() + " criado.", Toast.LENGTH_SHORT).show();
+                finish();
+                //Toast.makeText(CriarActivity.this, "Pré alugue: "+preAluguelDTO.getPreAluguel().getIdPreAluguel() + " criado.", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Toast.makeText(CriarActivity.this, preAluguelDTO.getMensagem(), Toast.LENGTH_SHORT).show();
+            }
+
+        }
+    }
+
 
 }
