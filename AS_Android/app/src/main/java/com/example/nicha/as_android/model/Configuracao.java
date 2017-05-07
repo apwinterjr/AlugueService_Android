@@ -1,10 +1,25 @@
 package com.example.nicha.as_android.model;
 
+import android.os.AsyncTask;
+import android.widget.Toast;
+
+import com.example.nicha.as_android.control.pre_aluguel.CriarActivity;
+import com.example.nicha.as_android.dto.ConfiguracaoDTO;
+import com.example.nicha.as_android.dto.PreAluguelDTO;
+import com.example.nicha.as_android.util.Json;
+import com.example.nicha.as_android.util.Util;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.URL;
+
 /**
  * Created by nicha on 03/04/2017.
  */
 
-public class Configuracao {
+public class Configuracao
+{
 
     /*
      * Variáveis de instância
@@ -16,12 +31,55 @@ public class Configuracao {
     private String contrato;
 
 	/*
-	 * Função construtora
+     * Função construtora
 	 */
 
-    public Configuracao() {
+    public Configuracao()
+    {
 
     }
+
+    public void pesquisarUltimo()
+    {
+        new Download().execute();
+    }
+
+    private class Download extends AsyncTask<Void, Void, String>
+    {
+        @Override
+        protected String doInBackground(Void... params)
+        {
+            String resultado = null;
+
+            try
+            {
+                URL url = new URL(Util.URL_WS + "Configuracao/PesquisarUltimo");
+                resultado = Json.recuperar(url);
+
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+            return resultado;
+        }
+
+        protected void onPostExecute(String s)
+        {
+            super.onPostExecute(s);
+            ConfiguracaoDTO configuracaoDTO = new ConfiguracaoDTO();
+            configuracaoDTO = configuracaoDTO.fromJson(s);
+            if (configuracaoDTO.isOk())
+            {
+                multa = configuracaoDTO.getConfiguracao().getMulta();
+                cupom = configuracaoDTO.getConfiguracao().getCupom();
+                contrato = configuracaoDTO.getConfiguracao().getContrato();
+                idConfiguracao = configuracaoDTO.getConfiguracao().getIdConfiguracao();
+
+            }
+        }
+    }
+
+
 
 	/*
 	 * Métodos de acesso
@@ -33,16 +91,18 @@ public class Configuracao {
      * @return idConf
      */
 
-    public Integer getIdConfiguracao() {
+    public Integer getIdConfiguracao()
+    {
         return idConfiguracao;
     }
 
     /**
      * Método set para idConf
      *
-     * @param idConf
+     *
      */
-    public void setIdConfiguracao(Integer idConfiguracao) {
+    public void setIdConfiguracao(Integer idConfiguracao)
+    {
         this.idConfiguracao = idConfiguracao;
     }
 
@@ -52,7 +112,8 @@ public class Configuracao {
      * @return multa
      */
 
-    public Float getMulta() {
+    public Float getMulta()
+    {
         return multa;
     }
 
@@ -61,7 +122,8 @@ public class Configuracao {
      *
      * @param multa
      */
-    public void setMulta(Float multa) {
+    public void setMulta(Float multa)
+    {
         this.multa = multa;
     }
 
@@ -71,7 +133,8 @@ public class Configuracao {
      * @return cupom
      */
 
-    public Float getCupom() {
+    public Float getCupom()
+    {
         return cupom;
     }
 
@@ -80,7 +143,8 @@ public class Configuracao {
      *
      * @param cupom
      */
-    public void setCupom(Float cupom) {
+    public void setCupom(Float cupom)
+    {
         this.cupom = cupom;
     }
 

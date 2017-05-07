@@ -16,8 +16,10 @@ import android.widget.Toast;
 
 import com.example.nicha.as_android.control.LoginActivity;
 import com.example.nicha.as_android.control.PaginaPrincipalActivity;
+import com.example.nicha.as_android.dto.ConfiguracaoDTO;
 import com.example.nicha.as_android.dto.OperadorDTO;
 import com.example.nicha.as_android.dto.PreAluguelDTO;
+import com.example.nicha.as_android.model.Configuracao;
 import com.example.nicha.as_android.model.Operador;
 import com.example.nicha.as_android.util.Json;
 import com.example.nicha.as_android.util.Util;
@@ -46,6 +48,7 @@ public class CriarActivity extends Activity
     static List<Produto> listaProdutoSelecionado;
     static ListView listViewProdutoSelecionado;
     static TextView txtCliente;
+    Configuracao configuracao;
 
 
     @Override
@@ -55,6 +58,8 @@ public class CriarActivity extends Activity
         setContentView(R.layout.activity_pre_aluguel_criar);
         txtCliente = (TextView) findViewById(R.id.txtClienteCriarPreAluguel);
         preAluguel = new PreAluguel();
+        configuracao = new Configuracao();
+        configuracao.pesquisarUltimo();
         listaProdutoSelecionado = new ArrayList<Produto>();
         clienteSelecionado = new Cliente();
         listViewProdutoSelecionado = (ListView) findViewById(R.id.listViewProdutoSelecionado);
@@ -155,7 +160,8 @@ public class CriarActivity extends Activity
 
     public void concluirPreAluguel (View v){
         preAluguel.setListaProdutos(listaProdutoSelecionado);
-        preAluguel.setOperadorCriador(1);
+        preAluguel.setOperadorCriador(LoginActivity.operadorLogado.getIdOperador());
+        preAluguel.setConfiguracao(configuracao);
         preAluguel.setStatusPreAluguel(1);
         if(preAluguel.getCliente() == null){
             Toast.makeText(this, "Cliente não selecionado.", Toast.LENGTH_SHORT).show();
@@ -169,19 +175,7 @@ public class CriarActivity extends Activity
                 f = p.getValor() + f;
             }
             preAluguel.setValorAluguel(f);
-            URL url = null;
-            try
-            {
-                url = new URL(Util.URL_WS+"PreAluguel/Cadastrar");
-                Json.conexaoJsonPostPreAluguel(url,preAluguel);
-            } catch (MalformedURLException e)
-            {
-                e.printStackTrace();
-            }
-             catch (ProtocolException e)
-            {
-                e.printStackTrace();
-            }
+            new Salvar().execute();
         }else{
             Toast.makeText(this, "Lista de produto vazia.", Toast.LENGTH_SHORT).show();
         }
@@ -214,7 +208,7 @@ public class CriarActivity extends Activity
 
     }
 
-    private class Autenticar extends AsyncTask<Void, Void, String>
+    private class Salvar extends AsyncTask<Void, Void, String>
     {
         @Override
         protected String doInBackground(Void... params)
@@ -239,9 +233,9 @@ public class CriarActivity extends Activity
             PreAluguelDTO preAluguelDTO = Json.jsonToPreAlugueDTO(s);
             if (preAluguelDTO.isOk())
             {
-                Toast.makeText(CriarActivity.this, "Pré alugue: "+preAluguelDTO.getPreAluguel().getIdPreAluguel() + " criado.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CriarActivity.this, "Pré alugue criado.", Toast.LENGTH_SHORT).show();
                 finish();
-                //Toast.makeText(CriarActivity.this, "Pré alugue: "+preAluguelDTO.getPreAluguel().getIdPreAluguel() + " criado.", Toast.LENGTH_SHORT).show();
+
             }
             else{
                 Toast.makeText(CriarActivity.this, preAluguelDTO.getMensagem(), Toast.LENGTH_SHORT).show();
@@ -249,6 +243,8 @@ public class CriarActivity extends Activity
 
         }
     }
+
+
 
 
 }

@@ -67,6 +67,7 @@ public class LoginActivity extends Activity {
             OperadorDTO operadorDTO = Json.jsonToOperadorDTO(s);
             if (operadorDTO.isOk())
             {
+                operadorLogado = operadorDTO.getOperador();
                 Intent intent =  new Intent(getApplicationContext(), PaginaPrincipalActivity.class);
                 startActivity(intent);
             }

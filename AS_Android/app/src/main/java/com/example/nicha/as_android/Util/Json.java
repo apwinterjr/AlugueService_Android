@@ -176,7 +176,39 @@ public class Json
 
     public static OperadorDTO jsonToOperadorDTO(String s)
     {
-        return g.fromJson(s, OperadorDTO.class);
+        OperadorDTO operadorDTO = new OperadorDTO();
+        JSONObject localObj = null;
+        try
+        {
+            localObj = new JSONObject(s);
+            boolean ok = localObj.getBoolean("ok");
+            String mensagem = localObj.getString("mensagem");
+            JSONObject operadorJson = localObj.getJSONObject("operador");
+            Operador operador = new Operador();
+            operador.setIdOperador(operadorJson.getInt("idOperador"));
+            operador.setNome(operadorJson.getString("nome"));
+            operador.setStatus(operadorJson.getInt("status"));
+            operador.setDataCriacao(operadorJson.getLong("dataCriacao"));
+            operador.setOperadorCriador(operadorJson.getInt("operadorCriador"));
+            operador.setSobrenome(operadorJson.getString("sobrenome"));
+            operador.setCpf(operadorJson.getString("cpf"));
+            operador.setDataNascimento(operadorJson.getLong("dataNascimento"));
+            operador.setEmail(operadorJson.getString("email"));
+            operador.setTelefone(operadorJson.getString("telefone"));
+            operador.setCelular(operadorJson.getString("celular"));
+            operador.setStatus(operadorJson.getInt("status"));
+            operador.setDataCriacao(operadorJson.getLong("dataCriacao"));
+            operador.setOperadorCriador(operadorJson.getInt("operadorCriador"));
+            operadorDTO.setOk(ok);
+            operadorDTO.setMensagem(mensagem);
+            operadorDTO.setOperador(operador);
+            return operadorDTO;
+        } catch (JSONException e)
+        {
+            e.printStackTrace();
+            return new OperadorDTO(false,"Erro ao transformar json em objeto.");
+        }
+
     }
 
     public static String conexaoJsonPostLogin(URL url, Operador operador) throws ProtocolException
@@ -295,9 +327,6 @@ public class Json
         return g.fromJson(s, PreAluguelDTO.class);
     }
 
-    public static Object deserialize(String s, Object obj){
-        return g.fromJson(s,obj.class);
-    }
 
 }
 
