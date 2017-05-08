@@ -372,8 +372,18 @@ public class Operador
         return new Gson().fromJson(s, Operador.class);
     }
 
+<<<<<<< HEAD
     public String toJson(Operador o)
     {
         return new Gson().toJson(o);
+=======
+    public Operador fromJson(String s){
+        return new Gson().fromJson(s,Operador.class);
+    }
+
+    public String toJson (Operador o){
+        return new Gson().toJson(o);
+    }
+>>>>>>> 30bc2b7588451301fd8aaaac6daa9bc0481a9b33
     }
 }

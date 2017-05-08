@@ -11,7 +11,10 @@ import java.io.Serializable;
 import java.util.List;
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 30bc2b7588451301fd8aaaac6daa9bc0481a9b33
 public class PreAluguelDTO extends BaseDTO<PreAluguel> implements Serializable
 {
 
