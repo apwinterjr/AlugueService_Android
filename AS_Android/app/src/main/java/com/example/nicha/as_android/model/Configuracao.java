@@ -8,6 +8,7 @@ import com.example.nicha.as_android.dto.ConfiguracaoDTO;
 import com.example.nicha.as_android.dto.PreAluguelDTO;
 import com.example.nicha.as_android.util.Json;
 import com.example.nicha.as_android.util.Util;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -165,4 +166,12 @@ public class Configuracao
         contrato = pContrato;
     }
 
+
+    public Configuracao fromJson(String s){
+        return new Gson().fromJson(s,Configuracao.class);
+    }
+
+    public String toJson (Configuracao c){
+        return new Gson().toJson(c);
+    }
 }

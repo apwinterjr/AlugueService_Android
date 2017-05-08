@@ -1,5 +1,7 @@
 package com.example.nicha.as_android.model;
 
+import com.google.gson.Gson;
+
 import java.util.List;
 
 /**
@@ -363,4 +365,11 @@ public class Operador {
         }
 
 
+    public Operador fromJson(String s){
+        return new Gson().fromJson(s,Operador.class);
+    }
+
+    public String toJson (Operador o){
+        return new Gson().toJson(o);
+    }
     }

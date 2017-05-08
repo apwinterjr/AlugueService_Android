@@ -1,5 +1,7 @@
 package com.example.nicha.as_android.model;
 
+import com.google.gson.Gson;
+
 /**
  * Created by nicha on 03/04/2017.
  */
@@ -12,31 +14,16 @@ public class Cliente {
 
 
     private int      idCliente;
-
-
     private String   nome;
-
     private String   sobrenome;
-
-
     private String   cpf;
-
-
     private long     dataNascimento;
-
     private String   email;
-
-
     private String   telefone;
     private String   celular;
-
-
     private Endereco endereco;
-
     private int      status;
-
     private long     dataCriacao;
-
     private Integer  operadorCriador;
 
     /*
@@ -293,4 +280,14 @@ public class Cliente {
         return "Cliente [idCliente=" + idCliente + ", nome=" + nome + ", sobrenome=" + sobrenome + ", telefone=" + telefone + ", celular=" + celular
                 + ", cpf=" + cpf + ", endereco=" + endereco + ", status=" + status + "]";
     }
+
+    public Cliente fromJson(String s){
+        return new Gson().fromJson(s,Cliente.class);
+    }
+
+    public String toJson (Cliente c){
+        return new Gson().toJson(c);
+    }
+
+
 }
