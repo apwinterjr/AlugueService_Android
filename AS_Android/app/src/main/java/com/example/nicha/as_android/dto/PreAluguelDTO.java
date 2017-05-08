@@ -10,9 +10,7 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by nicha on 03/04/2017.
- */
+
 
 public class PreAluguelDTO extends BaseDTO<PreAluguel> implements Serializable
 {
