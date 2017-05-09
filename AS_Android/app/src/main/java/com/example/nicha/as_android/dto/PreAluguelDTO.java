@@ -10,52 +10,74 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.util.List;
 
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 30bc2b7588451301fd8aaaac6daa9bc0481a9b33
-public class PreAluguelDTO extends BaseDTO<PreAluguel> implements Serializable
+public class PreAluguelDTO
 {
+    private boolean ok;
+    private String mensagem;
+    private PreAluguel preAluguel;
+    private List<PreAluguel> lista;
 
     /* Construtores da classe */
-    public PreAluguelDTO()
-    {
-        super();
+    public PreAluguelDTO() {
+
     }
 
     public PreAluguelDTO(boolean pOk, String pMensagem)
     {
-        super(pOk, pMensagem);
+        ok = pOk;
+        mensagem = pMensagem;
     }
 
     public PreAluguelDTO(boolean pOk, String pMensagem, PreAluguel pPreAluguel)
     {
-        super(pOk, pMensagem, pPreAluguel);
+        ok = pOk;
+        mensagem = pMensagem;
+        preAluguel = pPreAluguel;
     }
 
     public PreAluguelDTO(boolean pOk, String pMensagem, List<PreAluguel> pLista)
     {
-        super(pOk, pMensagem, pLista);
+        ok = pOk;
+        mensagem = pMensagem;
+        lista = pLista;
     }
 
     /* Métodos de acesso */
     public PreAluguel getPreAluguel()
     {
-        return getObjeto();
+        return preAluguel;
     }
 
     public void setPreAluguel(PreAluguel pPreAluguel)
     {
-        setObjeto(pPreAluguel);
+        preAluguel = pPreAluguel;
     }
 
 
 
     /* Método de conversão*/
-
-    public String toJson(PreAluguelDTO preAluguelDTO)
-    {
-        return new Gson().toJson(preAluguelDTO);
+    public boolean isOk() {
+        return ok;
     }
+
+    public void setOk(boolean pOk) {
+        ok = pOk;
+    }
+
+    public String getMensagem() {
+        return mensagem;
+    }
+
+    public void setMensagem(String pMensagem) {
+        mensagem = pMensagem;
+    }
+
+    public List<PreAluguel> getLista() {
+        return lista;
+    }
+
+    public void setLista(List<PreAluguel> pLista) {
+        lista = pLista;
+    }
+
 }

@@ -2,6 +2,7 @@ package com.example.nicha.as_android.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by nicha on 03/04/2017.
@@ -21,7 +22,7 @@ public class PreAluguel {
     private long                dataPrevista;
     private int                 statusPreAluguel;
     private float               valorAluguel;
-    private Collection<Produto> listaProdutos = new ArrayList<Produto>();
+    private List<Produto> listaProdutos = new ArrayList<Produto>();
 
     /*
      * Função construtora
@@ -153,7 +154,7 @@ public class PreAluguel {
      * @param pListaProdutos
      *            the listaProdutos to set
      */
-    public void setListaProdutos(Collection<Produto> pListaProdutos)
+    public void setListaProdutos(List<Produto> pListaProdutos)
     {
         listaProdutos = pListaProdutos;
     }

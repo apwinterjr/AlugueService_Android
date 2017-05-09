@@ -66,39 +66,10 @@
                     app:layout_constraintTop_toBottomOf="@+id/txtCpfConsultarPreAluguel"/>
             </android.support.constraint.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/textView17"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Operador" />
-
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:minHeight="60dp">
-
-                <TextView
-                    android:id="@+id/txtIdOperadorConsultarPreAluguel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="ID:"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView25"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Nome:"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtIdOperadorConsultarPreAluguel" />
 
             </android.support.constraint.ConstraintLayout>
 
@@ -126,21 +97,22 @@
                         android:orientation="vertical">
 
                         <ListView
+                            android:id="@+id/listViewProdutosConsultar"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="240dp"
                             android:minHeight="65dp"
                             tools:layout_editor_absoluteX="8dp"
-                            tools:layout_editor_absoluteY="-21dp" />
+                            tools:layout_editor_absoluteY="-21dp"/>
                     </LinearLayout>
                 </ScrollView>
 
             </android.support.constraint.ConstraintLayout>
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btnCancelarPreVenda"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cancelar pré-venda" />
+                android:text="Cancelar pré-venda"/>
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
