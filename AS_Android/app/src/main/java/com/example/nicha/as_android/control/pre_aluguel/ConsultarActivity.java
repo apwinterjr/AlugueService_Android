@@ -13,7 +13,6 @@ import com.example.nicha.as_android.R;
 import com.example.nicha.as_android.dto.PreAluguelDTO;
 import com.example.nicha.as_android.model.PreAluguel;
 import com.example.nicha.as_android.util.Json;
-import com.example.nicha.as_android.util.Util;
 
 import java.net.URL;
 
@@ -50,7 +49,7 @@ public class ConsultarActivity extends Activity {
 
             try
             {
-                URL url = new URL(Util.URL_WS+"PreAluguel/Pesquisar");
+                URL url = new URL(com.example.nicha.as_android.util.Utilitario.URL_WS+"PreAluguel/Pesquisar");
                 resultado = Json.conexaoJsonGet(url);
 
             } catch (Exception e)

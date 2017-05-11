@@ -15,7 +15,6 @@ import com.example.nicha.as_android.util.Json;
 import com.example.nicha.as_android.util.ProdutoAdapter;
 import com.example.nicha.as_android.dto.ProdutoDTO;
 import com.example.nicha.as_android.model.Produto;
-import com.example.nicha.as_android.util.Util;
 
 import org.json.JSONException;
 
@@ -81,7 +80,7 @@ public class SelecionarProdutoActivity extends Activity
 
             try
             {
-                URL url = new URL(Util.URL_WS+"Produto/Pesquisar");
+                URL url = new URL(com.example.nicha.as_android.util.Utilitario.URL_WS+"Produto/Pesquisar");
                 resultado = Json.conexaoJsonGet(url);
 
             } catch (Exception e)

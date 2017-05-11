@@ -1,17 +1,10 @@
 package com.example.nicha.as_android.model;
 
 import android.os.AsyncTask;
-import android.widget.Toast;
 
-import com.example.nicha.as_android.control.pre_aluguel.CriarActivity;
 import com.example.nicha.as_android.dto.ConfiguracaoDTO;
-import com.example.nicha.as_android.dto.PreAluguelDTO;
 import com.example.nicha.as_android.util.Json;
-import com.example.nicha.as_android.util.Util;
 import com.google.gson.Gson;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.net.URL;
 
@@ -54,7 +47,7 @@ public class Configuracao
 
             try
             {
-                URL url = new URL(Util.URL_WS + "Configuracao/PesquisarUltimo");
+                URL url = new URL(com.example.nicha.as_android.util.Utilitario.URL_WS + "Configuracao/PesquisarUltimo");
                 resultado = Json.recuperar(url);
 
             } catch (Exception e)

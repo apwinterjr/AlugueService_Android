@@ -4,26 +4,17 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.support.annotation.IntDef;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nicha.as_android.control.LoginActivity;
-import com.example.nicha.as_android.control.PaginaPrincipalActivity;
-import com.example.nicha.as_android.dto.ConfiguracaoDTO;
-import com.example.nicha.as_android.dto.OperadorDTO;
 import com.example.nicha.as_android.dto.PreAluguelDTO;
 import com.example.nicha.as_android.model.Configuracao;
-import com.example.nicha.as_android.model.Operador;
 import com.example.nicha.as_android.util.Json;
-import com.example.nicha.as_android.util.Util;
-import com.wdullaer.materialdatetimepicker.*;
 import com.example.nicha.as_android.R;
 import com.example.nicha.as_android.model.Cliente;
 import com.example.nicha.as_android.model.PreAluguel;
@@ -31,8 +22,6 @@ import com.example.nicha.as_android.model.Produto;
 import com.example.nicha.as_android.util.ProdutoAdapter;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -217,7 +206,7 @@ public class CriarActivity extends Activity
 
             try
             {
-                URL url = new URL(Util.URL_WS+"PreAluguel/Cadastrar");
+                URL url = new URL(com.example.nicha.as_android.util.Utilitario.URL_WS+"PreAluguel/Cadastrar");
                 resultado = Json.conexaoJsonPostPreAluguel(url,preAluguel);
 
             } catch (Exception e)

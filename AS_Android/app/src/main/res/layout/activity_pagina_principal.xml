@@ -36,24 +36,30 @@
         <Button
             android:id="@+id/btnPreAluguel"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="60dp"
             android:layout_below="@+id/imageView2"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="23dp"
             android:gravity="center"
             android:onClick="entrarPreAluguel"
-            android:text="Pré-Aluguel" />
+            android:text="Pré-Aluguel"/>
 
         <Button
             android:id="@+id/btnProduto"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="60dp"
             android:layout_alignStart="@+id/btnPreAluguel"
             android:layout_below="@+id/btnPreAluguel"
             android:layout_marginTop="25dp"
             android:gravity="center"
             android:onClick="entrarProduto"
-            android:text="Produto" />
+            android:text="Produto"/>
+
+        <com.twitter.sdk.android.core.identity.TwitterLoginButton
+            android:id="@+id/btnTwitter"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="25dp"/>
     </LinearLayout>
 
 </RelativeLayout>

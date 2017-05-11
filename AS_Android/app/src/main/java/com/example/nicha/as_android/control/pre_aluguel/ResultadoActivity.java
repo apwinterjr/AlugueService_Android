@@ -1,21 +1,16 @@
 package com.example.nicha.as_android.control.pre_aluguel;
 
 import android.app.Activity;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.nicha.as_android.R;
 import com.example.nicha.as_android.dto.PreAluguelDTO;
 import com.example.nicha.as_android.model.PreAluguel;
 import com.example.nicha.as_android.model.Produto;
-import com.example.nicha.as_android.util.Json;
 import com.example.nicha.as_android.util.ProdutoAdapter;
-import com.example.nicha.as_android.util.Util;
 
-import java.net.URL;
 import java.util.List;
 
 public class ResultadoActivity extends Activity

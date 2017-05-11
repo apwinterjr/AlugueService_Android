@@ -9,18 +9,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nicha.as_android.R;
 import com.example.nicha.as_android.dto.ClienteDTO;
-import com.example.nicha.as_android.dto.ProdutoDTO;
 import com.example.nicha.as_android.model.Cliente;
-import com.example.nicha.as_android.model.Produto;
 import com.example.nicha.as_android.util.ClienteAdapter;
 import com.example.nicha.as_android.util.Json;
-import com.example.nicha.as_android.util.ProdutoAdapter;
-import com.example.nicha.as_android.util.Util;
 
 import org.json.JSONException;
 
@@ -116,7 +111,7 @@ public class SelecionarClienteActivity extends Activity
 
             try
             {
-                URL url = new URL(Util.URL_WS+"Cliente/Pesquisar");
+                URL url = new URL(com.example.nicha.as_android.util.Utilitario.URL_WS+"Cliente/Pesquisar");
                 resultado = Json.conexaoJsonGet(url);
 
             } catch (Exception e)

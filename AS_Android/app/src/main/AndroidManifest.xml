@@ -37,6 +37,13 @@
         <activity android:name=".control.pre_aluguel.SelecionarProdutoActivity"/>
         <activity android:name=".control.pre_aluguel.SelecionarClienteActivity">
         </activity>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="8729f577e5ad1db35f8f4c7957f8b1c52181893d"/>
+
+        <activity android:name=".control.TwitterActivity">
+        </activity>
     </application>
 
 </manifest>

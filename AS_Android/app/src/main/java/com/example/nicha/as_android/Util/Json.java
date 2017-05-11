@@ -37,7 +37,7 @@ import javax.net.ssl.HttpsURLConnection;
  * Created by nicha on 03/04/2017.
  */
 
-public class Json
+public  class Json
 {
     private static Gson g = new Gson();
 

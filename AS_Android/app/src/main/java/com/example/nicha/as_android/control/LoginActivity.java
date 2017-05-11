@@ -11,21 +11,35 @@ import android.widget.Toast;
 import com.example.nicha.as_android.R;
 import com.example.nicha.as_android.dto.OperadorDTO;
 import com.example.nicha.as_android.model.Operador;
-import com.example.nicha.as_android.util.Json;
-import com.example.nicha.as_android.util.Util;
 
-import org.json.JSONException;
+import com.example.nicha.as_android.util.Json;
+import com.example.nicha.as_android.util.Utilitario;
+import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.core.identity.TwitterLoginButton;
+
+import io.fabric.sdk.android.Fabric;
 
 import java.net.URL;
 
+
 public class LoginActivity extends Activity {
+
+    // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
+    private static final String TWITTER_KEY = "rvPAeH3sUrPLmeq9RPAgpbuVi";
+    private static final String TWITTER_SECRET = "Ep0JvcaCqLUOtOabLXJMhmPm75edNGw0ri5bU7kUFRng3h6Xhi";
+
+
 
     Operador operador;
     public static Operador operadorLogado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
+        Fabric.with(this, new Twitter(authConfig));
         setContentView(R.layout.activity_login);
+
         operador = new Operador();
         EditText l = (EditText) findViewById(R.id.txtUsuario);
         l.requestFocus();
@@ -51,7 +65,7 @@ public class LoginActivity extends Activity {
 
             try
             {
-                URL url = new URL(Util.URL_WS+"Operador/Autenticar");
+                URL url = new URL(Utilitario.URL_WS+"Operador/Autenticar");
                 resultado = Json.conexaoJsonPostLogin(url,operador);
 
             } catch (Exception e)
