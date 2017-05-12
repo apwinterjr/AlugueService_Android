@@ -6,8 +6,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.nicha.as_android.R;
@@ -16,6 +18,9 @@ import com.example.nicha.as_android.dto.ProdutoDTO;
 import com.example.nicha.as_android.model.Produto;
 import com.example.nicha.as_android.util.Json;
 import com.example.nicha.as_android.util.ProdutoAdapter;
+import com.example.nicha.as_android.util.Utilitario;
+
+import org.json.JSONException;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -29,6 +34,10 @@ public class StatusActivity extends Activity
     ListView listViewProdutoSelecionado;
     EditText editTextIdProduto;
     Produto produtoSelecionado;
+    String idProduto;
+    Spinner spinnerStatus;
+    String[] status;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -38,7 +47,10 @@ public class StatusActivity extends Activity
         listViewProdutoSelecionado = (ListView) findViewById(R.id.ListStatusProdutoSelecionado);
         listaProdutoSelecionado = new ArrayList<Produto>();
         editTextIdProduto = (EditText) findViewById(R.id.editTextIdProdutoStatus);
-
+        spinnerStatus = (Spinner) findViewById(R.id.spinnerStatus);
+        status = new String[]{"Ativo", "Inativo", "Manutenção", "Lavagem"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, status);
+        spinnerStatus.setAdapter(adapter);
         listViewProdutoSelecionado.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             @Override
@@ -53,38 +65,34 @@ public class StatusActivity extends Activity
 
     public void adicionarProdutoNaLista(View v)
     {
-        URL url = null;
-        try
+        idProduto = editTextIdProduto.getText().toString();
+        Boolean adiciona = true;
+        Integer id = Integer.parseInt(idProduto);
+        for (Produto p : listaProdutoSelecionado)
         {
-            url = new URL("http://10.0.2.2:9999/AlugueServiceWS/WS/Produto/Pesquisar/Recuperar/" + editTextIdProduto.getText().toString());
-        } catch (MalformedURLException e)
-        {
-            e.printStackTrace();
-        }
-        String json = Json.recuperar(url);
-        if (json != null)
-        {
-            ProdutoDTO produtoDto = new ProdutoDTO();
-            produtoDto = Json.toProdutoDTO(json);
-            if (produtoDto.isOk())
+            if (p.getIdProduto().equals(id))
             {
-                listaProdutoSelecionado.add(produtoDto.getProduto());
-                adicionarNaListView(listaProdutoSelecionado);
-            } else
-            {
-                Toast.makeText(this, produtoDto.getMensagem(), Toast.LENGTH_SHORT).show();
+                adiciona = false;
             }
+        }
+        if (adiciona)
+        {
+            new DownloadFromWS().execute();
+        }else {
+            Toast.makeText(this, "Produto já consta na lista.", Toast.LENGTH_SHORT).show();
         }
     }
 
     public void removerProdutoLista(View v)
     {
-        if(produtoSelecionado != null || produtoSelecionado.getIdProduto() != 0){
+        if (produtoSelecionado != null || produtoSelecionado.getIdProduto() != 0)
+        {
             listaProdutoSelecionado.remove(produtoSelecionado);
             adicionarNaListView(listaProdutoSelecionado);
             Toast.makeText(this, produtoSelecionado.getNome() + " removido", Toast.LENGTH_SHORT).show();
             produtoSelecionado = new Produto();
-        }else{
+        } else
+        {
             Toast.makeText(this, "Nenhum produto selecionado.", Toast.LENGTH_SHORT).show();
         }
 
@@ -96,4 +104,42 @@ public class StatusActivity extends Activity
         listViewProdutoSelecionado.setAdapter(ProdutoAdapter);
     }
 
+
+    private class DownloadFromWS extends AsyncTask<Void, Void, String>
+    {
+
+        @Override
+        protected String doInBackground(Void... params)
+        {
+            URL url = null;
+            try
+            {
+                url = new URL(Utilitario.URL_WS + "Produto/Recuperar/" + idProduto);
+            } catch (MalformedURLException e)
+            {
+                e.printStackTrace();
+            }
+            String json = Json.recuperar(url);
+            return json;
+
+        }
+
+        @Override
+        protected void onPostExecute(String s)
+        {
+            super.onPostExecute(s);
+            ProdutoDTO produtoDto = new ProdutoDTO();
+            produtoDto = Json.toProdutoDTO(s);
+            if (produtoDto.isOk())
+            {
+                listaProdutoSelecionado.add(produtoDto.getProduto());
+                adicionarNaListView(listaProdutoSelecionado);
+            } else
+            {
+                Toast.makeText(StatusActivity.this, produtoDto.getMensagem(), Toast.LENGTH_SHORT).show();
+            }
+
+        }
+
+    }
 }

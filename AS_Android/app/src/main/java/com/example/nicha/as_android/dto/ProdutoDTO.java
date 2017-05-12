@@ -8,39 +8,75 @@ import java.util.List;
  * Created by nicha on 03/04/2017.
  */
 
-public class ProdutoDTO extends BaseDTO<Produto>
+public class ProdutoDTO
 {
+
+
+    private boolean ok;
+    private String mensagem;
+    private Produto produto;
+    private List<Produto> lista;
 
     /* Construtores da classe */
     public ProdutoDTO()
     {
-        super();
+
     }
 
     public ProdutoDTO(boolean pOk, String pMensagem)
     {
-        super(pOk, pMensagem);
+        ok = pOk;
+        mensagem = pMensagem;
     }
 
     public ProdutoDTO(boolean pOk, String pMensagem, Produto pProduto)
     {
-        super(pOk, pMensagem, pProduto);
+        ok = pOk;
+        mensagem = pMensagem;
+        produto = pProduto;
     }
 
     public ProdutoDTO(boolean pOk, String pMensagem, List<Produto> pLista)
     {
-        super(pOk, pMensagem, pLista);
+        ok = pOk;
+        mensagem = pMensagem;
+        lista = pLista;
     }
 
     /* Métodos de acesso */
     public Produto getProduto()
     {
-        return getObjeto();
+        return produto;
     }
 
     public void setProduto(Produto pProduto)
     {
-        setObjeto(pProduto);
+        produto = pProduto;
     }
+
+    public boolean isOk() {
+        return ok;
+    }
+
+    public void setOk(boolean pOk) {
+        ok = pOk;
+    }
+
+    public String getMensagem() {
+        return mensagem;
+    }
+
+    public void setMensagem(String pMensagem) {
+        mensagem = pMensagem;
+    }
+
+    public List<Produto> getLista() {
+        return lista;
+    }
+
+    public void setLista(List<Produto> pLista) {
+        lista = pLista;
+    }
+
 
 }
