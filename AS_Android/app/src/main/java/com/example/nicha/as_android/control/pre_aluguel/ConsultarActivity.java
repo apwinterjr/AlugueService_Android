@@ -16,7 +16,8 @@ import com.example.nicha.as_android.util.Json;
 
 import java.net.URL;
 
-public class ConsultarActivity extends Activity {
+public class ConsultarActivity extends Activity
+{
 
     EditText editTextIdPreAluguel;
     Button btnConsultar;
@@ -25,7 +26,8 @@ public class ConsultarActivity extends Activity {
     Integer id;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_aluguel_consultar);
         preAluguel = new PreAluguel();
@@ -34,9 +36,16 @@ public class ConsultarActivity extends Activity {
         btnConsultar = (Button) findViewById(R.id.btnConsultarPreVenda);
     }
 
-    public void consultarPreAluguel(View v){
-        id = Integer.parseInt(editTextIdPreAluguel.getText().toString());
-        new  ConsultarPreVenda().execute();
+    public void consultarPreAluguel(View v)
+    {
+        if (editTextIdPreAluguel.getText().length() > 0)
+        {
+            id = Integer.parseInt(editTextIdPreAluguel.getText().toString());
+            new ConsultarPreVenda().execute();
+        } else
+        {
+            Toast.makeText(this, "Informe o pré-aluguel.", Toast.LENGTH_SHORT).show();
+        }
     }
 
 
@@ -49,7 +58,7 @@ public class ConsultarActivity extends Activity {
 
             try
             {
-                URL url = new URL(com.example.nicha.as_android.util.Utilitario.URL_WS+"PreAluguel/Pesquisar");
+                URL url = new URL(com.example.nicha.as_android.util.Utilitario.URL_WS + "PreAluguel/Pesquisar");
                 resultado = Json.conexaoJsonGet(url);
 
             } catch (Exception e)
@@ -64,7 +73,7 @@ public class ConsultarActivity extends Activity {
             super.onPostExecute(s);
 
             preAluguelDto = Json.toPreAluguelDTO(s);
-            if(preAluguelDto.isOk())
+            if (preAluguelDto.isOk())
             {
                 for (PreAluguel p : preAluguelDto.getLista())
                 {
@@ -75,14 +84,16 @@ public class ConsultarActivity extends Activity {
                 }
                 if (preAluguel.getIdPreAluguel() != 0)
                 {
-                    Intent intent = new Intent(getApplicationContext(),ResultadoActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), ResultadoActivity.class);
                     startActivity(intent);
                 } else
                 {
                     Toast.makeText(ConsultarActivity.this, "Nenhum produto encontrado.", Toast.LENGTH_SHORT).show();
                 }
-            }else{
-                Toast.makeText(ConsultarActivity.this, preAluguelDto.getMensagem(), Toast.LENGTH_SHORT).show();}
+            } else
+            {
+                Toast.makeText(ConsultarActivity.this, preAluguelDto.getMensagem(), Toast.LENGTH_SHORT).show();
+            }
 
         }
     }
