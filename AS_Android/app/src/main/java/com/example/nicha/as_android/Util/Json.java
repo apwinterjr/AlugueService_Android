@@ -13,6 +13,7 @@ import com.example.nicha.as_android.model.Cliente;
 import com.example.nicha.as_android.model.Endereco;
 import com.example.nicha.as_android.model.Operador;
 import com.example.nicha.as_android.model.Produto;
+import com.google.gson.internal.Primitives;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,7 +38,7 @@ import javax.net.ssl.HttpsURLConnection;
  * Created by nicha on 03/04/2017.
  */
 
-public  class Json
+public class Json
 {
     private static Gson g = new Gson();
 
@@ -206,7 +207,7 @@ public  class Json
         } catch (JSONException e)
         {
             e.printStackTrace();
-            return new OperadorDTO(false,"Erro ao transformar json em objeto.");
+            return new OperadorDTO(false, "Erro ao transformar json em objeto.");
         }
 
     }
@@ -244,6 +245,45 @@ public  class Json
         }
 
 
+    }
+
+    public static void alterarProduto(List<Produto> list, URL url)
+    {
+        for (Produto p : list)
+        {
+            alterarProduto(p, url);
+        }
+    }
+
+    public static String alterarProduto(Produto produto, URL url)
+    {
+        HttpURLConnection urlConnection = null;
+
+        try
+        {
+            urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("PUT");
+            //urlConnection.setReadTimeout(10000 /* milliseconds */);
+            //urlConnection.setConnectTimeout(15000 /* milliseconds */);
+            urlConnection.setRequestProperty("Content-Type",
+                    "application/json");
+            OutputStreamWriter wr = new OutputStreamWriter(urlConnection.getOutputStream());
+            wr.write(toJson(produto));
+            wr.flush();
+
+            String result = webToString(urlConnection.getInputStream());
+            return result;
+        } catch (Exception e)
+        {
+            Log.e("Error", "Error ", e);
+            return null;
+        } finally
+        {
+            if (urlConnection != null)
+            {
+                urlConnection.disconnect();
+            }
+        }
     }
 
     public static PreAluguelDTO toPreAluguelDTO(String s)

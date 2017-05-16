@@ -20,8 +20,10 @@ import com.example.nicha.as_android.model.Cliente;
 import com.example.nicha.as_android.model.PreAluguel;
 import com.example.nicha.as_android.model.Produto;
 import com.example.nicha.as_android.util.ProdutoAdapter;
+import com.example.nicha.as_android.util.Utilitario;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -78,11 +80,12 @@ public class CriarActivity extends Activity
                 List<Calendar> diasAtivos = new ArrayList<>();
 
 
-                for (int i = 1; i <= 30; i++  )
+                for (int i = 1; i <= 30; i++)
                 {
                     dia = Calendar.getInstance();
-                    dia.add(Calendar.DATE,i);
-                    if(dia.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY){
+                    dia.add(Calendar.DATE, i);
+                    if (dia.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY)
+                    {
                         diasAtivos.add(dia);
 
                     }
@@ -103,7 +106,7 @@ public class CriarActivity extends Activity
             TextView txtDataSelecionada = (TextView) findViewById(R.id.txtDataCriarPreAluguel);
             txtDataSelecionada.setText("Data: " + dayOfMonth + "/" + monthOfYear + "/" + year);
             Calendar data = Calendar.getInstance();
-            data.set(year,monthOfYear,dayOfMonth);
+            data.set(year, monthOfYear, dayOfMonth);
             preAluguel.setDataPrevista(data.getTimeInMillis());
         }
     };
@@ -124,18 +127,22 @@ public class CriarActivity extends Activity
     public void adicionarClientePreAluguel(Cliente cliente)
     {
         preAluguel.setCliente(cliente);
-        txtCliente.setText("Cliente: " + cliente.getNome() + " "+ cliente.getSobrenome());
+        txtCliente.setText("Cliente: " + cliente.getNome() + " " + cliente.getSobrenome());
 
     }
 
     public void removerProdutoLista(View v)
     {
-        if(produtoSelecionado != null || produtoSelecionado.getIdProduto() != 0){
+        if (produtoSelecionado != null || produtoSelecionado.getIdProduto() != 0)
+        {
+
             listaProdutoSelecionado.remove(produtoSelecionado);
             adicionarNaListView(listaProdutoSelecionado);
+            produtoSelecionado.setStatus(1);
             Toast.makeText(this, produtoSelecionado.getNome() + " removido", Toast.LENGTH_SHORT).show();
-            produtoSelecionado = new Produto();
-        }else{
+            new AlterarStatusProduto().execute();
+        } else
+        {
             Toast.makeText(this, "Nenhum produto selecionado.", Toast.LENGTH_SHORT).show();
         }
 
@@ -147,12 +154,14 @@ public class CriarActivity extends Activity
         listViewProdutoSelecionado.setAdapter(ProdutoAdapter);
     }
 
-    public void concluirPreAluguel (View v){
+    public void concluirPreAluguel(View v)
+    {
         preAluguel.setListaProdutos(listaProdutoSelecionado);
         preAluguel.setOperadorCriador(LoginActivity.operadorLogado.getIdOperador());
         preAluguel.setConfiguracao(configuracao);
         preAluguel.setStatusPreAluguel(1);
-        if(preAluguel.getCliente() == null){
+        if (preAluguel.getCliente() == null)
+        {
             Toast.makeText(this, "Cliente não selecionado.", Toast.LENGTH_SHORT).show();
         }
         if (!preAluguel.getListaProdutos().isEmpty())
@@ -165,7 +174,8 @@ public class CriarActivity extends Activity
             }
             preAluguel.setValorAluguel(f);
             new Salvar().execute();
-        }else{
+        } else
+        {
             Toast.makeText(this, "Lista de produto vazia.", Toast.LENGTH_SHORT).show();
         }
     }
@@ -180,7 +190,8 @@ public class CriarActivity extends Activity
             {
                 adicionarNaListView(listaProdutoSelecionado);
                 Toast.makeText(this, "Produto adicionado.", Toast.LENGTH_SHORT).show();
-            }else {
+            } else
+            {
                 Toast.makeText(this, "Produto já adicionado na lista.", Toast.LENGTH_SHORT).show();
             }
         }
@@ -189,13 +200,14 @@ public class CriarActivity extends Activity
             if (resultCode == RESULT_OK)
             {
                 adicionarClientePreAluguel(clienteSelecionado);
-                Toast.makeText(this,clienteSelecionado.getNome() + clienteSelecionado.getSobrenome() + " selecionado.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, clienteSelecionado.getNome() + clienteSelecionado.getSobrenome() + " selecionado.", Toast.LENGTH_SHORT).show();
                 preAluguel.setCliente(clienteSelecionado);
             }
         }
 
 
     }
+
 
     private class Salvar extends AsyncTask<Void, Void, String>
     {
@@ -206,8 +218,8 @@ public class CriarActivity extends Activity
 
             try
             {
-                URL url = new URL(com.example.nicha.as_android.util.Utilitario.URL_WS+"PreAluguel/Cadastrar");
-                resultado = Json.conexaoJsonPostPreAluguel(url,preAluguel);
+                URL url = new URL(com.example.nicha.as_android.util.Utilitario.URL_WS + "PreAluguel/Cadastrar");
+                resultado = Json.conexaoJsonPostPreAluguel(url, preAluguel);
 
             } catch (Exception e)
             {
@@ -225,8 +237,8 @@ public class CriarActivity extends Activity
                 Toast.makeText(CriarActivity.this, "Pré alugue criado.", Toast.LENGTH_SHORT).show();
                 finish();
 
-            }
-            else{
+            } else
+            {
                 Toast.makeText(CriarActivity.this, preAluguelDTO.getMensagem(), Toast.LENGTH_SHORT).show();
             }
 
@@ -234,6 +246,23 @@ public class CriarActivity extends Activity
     }
 
 
+    private class AlterarStatusProduto extends AsyncTask<Void, Void, String>
+    {
+        @Override
+        protected String doInBackground(Void... params)
+        {
+            try
+            {
+                URL url = new URL(Utilitario.URL_WS + "Produto/Atualizar");
+                Json.alterarProduto(produtoSelecionado, url);
+                produtoSelecionado = new Produto();
+            } catch (MalformedURLException e)
+            {
+                e.printStackTrace();
+            }
+            return null;
 
+        }
+    }
 
 }

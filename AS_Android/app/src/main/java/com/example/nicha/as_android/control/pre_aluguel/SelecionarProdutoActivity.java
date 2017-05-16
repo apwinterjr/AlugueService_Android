@@ -15,14 +15,17 @@ import com.example.nicha.as_android.util.Json;
 import com.example.nicha.as_android.util.ProdutoAdapter;
 import com.example.nicha.as_android.dto.ProdutoDTO;
 import com.example.nicha.as_android.model.Produto;
+import com.example.nicha.as_android.util.Utilitario;
 
 import org.json.JSONException;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 public class SelecionarProdutoActivity extends Activity
 {
     ListView listViewProduto;
+    Produto p;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -36,10 +39,12 @@ public class SelecionarProdutoActivity extends Activity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-                Produto p = (Produto) listViewProduto.getItemAtPosition(position);
+                p = (Produto) listViewProduto.getItemAtPosition(position);
                 Intent intent = new Intent();
                 if(adicionarProdutoNaLista(p)){
                     setResult(RESULT_OK, intent);
+                    p.setStatus(3);
+                    new AtualizarProduto().execute();
                 }
                 finish();
             }
@@ -70,7 +75,26 @@ public class SelecionarProdutoActivity extends Activity
         new DownloadFromWS().execute();
     }
 
-    private class DownloadFromWS extends AsyncTask<Void, Void, String>
+    private class AtualizarProduto extends AsyncTask<Void, Void, String>
+    {
+        @Override
+        protected String doInBackground(Void... params)
+        {
+            try
+            {
+                URL url = new URL(Utilitario.URL_WS+"Produto/Atualizar");
+                Json.alterarProduto(p,url);
+            } catch (MalformedURLException e)
+            {
+                e.printStackTrace();
+            }
+
+
+            return null;
+        }
+    }
+
+        private class DownloadFromWS extends AsyncTask<Void, Void, String>
     {
 
         @Override
