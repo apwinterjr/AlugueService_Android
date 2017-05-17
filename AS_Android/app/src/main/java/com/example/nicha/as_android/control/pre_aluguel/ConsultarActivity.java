@@ -88,7 +88,7 @@ public class ConsultarActivity extends Activity
                     startActivity(intent);
                 } else
                 {
-                    Toast.makeText(ConsultarActivity.this, "Nenhum produto encontrado.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ConsultarActivity.this, "Nenhum pré-aluguel encontrado.", Toast.LENGTH_SHORT).show();
                 }
             } else
             {

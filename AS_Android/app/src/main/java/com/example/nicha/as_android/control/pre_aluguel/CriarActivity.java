@@ -23,6 +23,9 @@ import com.example.nicha.as_android.util.ProdutoAdapter;
 import com.example.nicha.as_android.util.Utilitario;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import org.joda.time.DateTime;
+import org.joda.time.Days;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -33,6 +36,7 @@ public class CriarActivity extends Activity
 {
 
     private static PreAluguel preAluguel;
+    private int dias;
     Calendar calendar = Calendar.getInstance();
     static Cliente clienteSelecionado;
     Produto produtoSelecionado;
@@ -107,7 +111,11 @@ public class CriarActivity extends Activity
             txtDataSelecionada.setText("Data: " + dayOfMonth + "/" + monthOfYear + "/" + year);
             Calendar data = Calendar.getInstance();
             data.set(year, monthOfYear, dayOfMonth);
+
+            DateTime dataAtual = new DateTime(Calendar.getInstance());
+            DateTime dataPrevista = new DateTime(data);
             preAluguel.setDataPrevista(data.getTimeInMillis());
+            dias = Days.daysBetween(dataAtual,dataPrevista).getDays();
         }
     };
 
@@ -172,6 +180,7 @@ public class CriarActivity extends Activity
             {
                 f = p.getValor() + f;
             }
+            f=f*dias;
             preAluguel.setValorAluguel(f);
             new Salvar().execute();
         } else
@@ -234,7 +243,7 @@ public class CriarActivity extends Activity
             PreAluguelDTO preAluguelDTO = Json.jsonToPreAlugueDTO(s);
             if (preAluguelDTO.isOk())
             {
-                Toast.makeText(CriarActivity.this, "Pré alugue criado.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(CriarActivity.this, "Pré aluguel "+preAluguelDTO.getPreAluguel().getIdPreAluguel() +" criado.", Toast.LENGTH_SHORT).show();
                 finish();
 
             } else

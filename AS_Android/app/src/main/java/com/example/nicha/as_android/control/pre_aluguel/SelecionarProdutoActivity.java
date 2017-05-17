@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,6 +22,8 @@ import org.json.JSONException;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SelecionarProdutoActivity extends Activity
 {
@@ -122,7 +125,14 @@ public class SelecionarProdutoActivity extends Activity
             {
                 ProdutoDTO produtoDto = Json.convertJSONtoProdutoDTOLista(s);
                 if (produtoDto.isOk()){
-                    ArrayAdapter<Produto> produtoAdapter = new ProdutoAdapter(SelecionarProdutoActivity.this, R.layout.lista_produto,produtoDto.getLista());
+                    List<Produto> list = new ArrayList<Produto>();
+                    for (Produto p: produtoDto.getLista())
+                    {
+                        if(p.getStatus() == 1){
+                            list.add(p);
+                        }
+                    }
+                    ArrayAdapter<Produto> produtoAdapter = new ProdutoAdapter(SelecionarProdutoActivity.this, R.layout.lista_produto,list);
                     ListView listViewProduto = (ListView) findViewById(R.id.listProdutos);
                     listViewProduto.setAdapter(produtoAdapter);
                 }else{

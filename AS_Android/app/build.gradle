@@ -44,6 +44,8 @@ dependencies {
     compile('com.twitter.sdk.android:twitter:2.3.2@aar') {
         transitive = true;
     }
+    //Joda
+    compile 'net.danlew:android.joda:2.9.9'
     compile 'com.android.support:appcompat-v7:25.1.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.wdullaer:materialdatetimepicker:3.1.3'

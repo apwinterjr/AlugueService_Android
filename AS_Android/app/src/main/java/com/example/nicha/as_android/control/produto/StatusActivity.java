@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.service.carrier.CarrierService;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -63,23 +64,57 @@ public class StatusActivity extends Activity
         });
     }
 
-    public void adicionarProdutoNaLista(View v)
+    public void concluirAlteracao(View v)
     {
-        idProduto = editTextIdProduto.getText().toString();
-        Boolean adiciona = true;
-        Integer id = Integer.parseInt(idProduto);
+        String status = spinnerStatus.getSelectedItem().toString();
+        int intStatus = 0;
+        switch (status)
+        {
+            case "Ativo":
+                intStatus = 1;
+                break;
+            case "Inativo":
+                intStatus = 0;
+                break;
+            case "Manutenção":
+                intStatus = 4;
+                break;
+            case "Lavagem":
+                intStatus = 5;
+                break;
+        }
         for (Produto p : listaProdutoSelecionado)
         {
-            if (p.getIdProduto().equals(id))
-            {
-                adiciona = false;
-            }
+
+            p.setStatus(intStatus);
         }
-        if (adiciona)
+        new AlterarStatus().execute();
+        finish();
+    }
+
+    public void adicionarProdutoNaLista(View v)
+    {
+        if (editTextIdProduto.getText().length() > 0)
         {
-            new DownloadFromWS().execute();
+            idProduto = editTextIdProduto.getText().toString();
+            Boolean adiciona = true;
+            Integer id = Integer.parseInt(idProduto);
+            for (Produto p : listaProdutoSelecionado)
+            {
+                if (p.getIdProduto().equals(id))
+                {
+                    adiciona = false;
+                }
+            }
+            if (adiciona)
+            {
+                new DownloadFromWS().execute();
+            } else
+            {
+                Toast.makeText(this, "Produto já consta na lista.", Toast.LENGTH_SHORT).show();
+            }
         }else {
-            Toast.makeText(this, "Produto já consta na lista.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Favor informar ID do produto.", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -104,6 +139,25 @@ public class StatusActivity extends Activity
         listViewProdutoSelecionado.setAdapter(ProdutoAdapter);
     }
 
+
+    private class AlterarStatus extends AsyncTask<Void, Void, Void>
+    {
+        @Override
+        protected Void doInBackground(Void... params)
+        {
+            URL url = null;
+            try
+            {
+                url = new URL(Utilitario.URL_WS + "Produto/Atualizar");
+                Json.alterarProduto(listaProdutoSelecionado, url);
+            } catch (MalformedURLException e)
+            {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+    }
 
     private class DownloadFromWS extends AsyncTask<Void, Void, String>
     {
